@@ -1,12 +1,15 @@
 <ion-content>
   <div *ngFor='let shop of shopsArray' class='list purple'>
     <p class='shop-name'>{{shop.name}}</p>
-    <div *ngFor='let product of shop.products' class='product'>
+    <div *ngFor='let product of shop.products, let i = index' class='product'  [ngClass]='{"semitrasp" : semitransparent[shop.name][i] === true}'>
       <span class='product-name' [ngClass]='{"sale" : product.sale}'>{{product.name}}</span>
       <span *ngIf='product.sale' class='product-sale'><img src='assets/imgs/icon_conviene.png' /></span>
       <span class='product-quantity'>x{{product.quantity}}</span>
       <span class='product-dots'>.....................................................................</span>
-      <span class='product-close'>X</span>
+      <span class='product-close' (tap)='transp(shop.name, i)'>X</span>
+    </div>
+    <div class='list-close'>
+      Spesa fatta! <span class='product-close'>X</span>
     </div>
   </div>
 

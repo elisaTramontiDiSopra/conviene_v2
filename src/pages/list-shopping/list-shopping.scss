@@ -11,7 +11,7 @@ page-list-shopping {
     }
     .product {
       display: flex;
-      padding-left: 4vh;
+      padding: 1vh 4vh;
       margin: 0;
       font-size: 3vh;
       white-space: nowrap;
@@ -19,6 +19,7 @@ page-list-shopping {
         text-transform: uppercase;
         background-color: #fff;
         color: $text-color;
+        padding-right: 1vh;
       }
       .product-quantity {
         background-color: #fff;
@@ -34,23 +35,31 @@ page-list-shopping {
         }
       }
       .product-dots { overflow: hidden; flex: auto}
-      .product-name, .product-quantity, .product-close {padding: 0 1vh;}
+      .product-close { border-left: 4px solid #fff; color: #fff}
+      .product-quantity, .product-close {padding: 0 1vh;}
       // stili per i prodotti in offerta
       .product-quantity.sale, .product-name.sale { color: #fff;}
     }
-    .list-total {
-      background-color: #000;
+    .list-close {
       color: #fff;
       height: 6vh;
-      margin: 4vh 0 0 0;
+      padding: 0 4vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
   .purple {
     border-top: 4px solid $purple;
     .shop-name, .product-quantity {color: $purple }
-    .product-close {background-color: $purple; }
+    .product-close, .list-close {background-color: $purple; }
     // stili per i prodotti in offerta
     .product-name.sale, .product-sale.sale  {background-color: $purple; }
     .product-quantity.sale {background-color: $darkpurple; }
   }
+
+  .semitrasp{
+    opacity: 0.4;
+  }
+
 }

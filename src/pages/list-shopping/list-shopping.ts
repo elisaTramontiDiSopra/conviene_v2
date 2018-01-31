@@ -18,7 +18,10 @@ export class ListShoppingPage {
   shoppingListsObservable: Observable<any[]>;
   shoppingShopsDocument: AngularFirestoreDocument<any>;
   shopsArray = [];
+  shopsListTotalMoney = []
   colorsArray = ['purple', 'orange', 'blue'];
+
+  semitransparent = {};
 
   constructor(
     public navCtrl: NavController,
@@ -38,8 +41,19 @@ export class ListShoppingPage {
             name: key,
             products: r
           });
+          //riempio l'array semitransparent di un false per ogni prodotto della lista negozio
+          //per poter poi rendere semitrasparente il prodotto al clic della X nel template
+          for (let i=0; i<r.length; i++) {
+            this.semitransparent[key] = {[i]: false}
+          }
         });
       }
     });
+    console.log(this.semitransparent);
+  }
+
+  transp(shop, i){
+    this.semitransparent[shop][i] = true
+    console.log(this.semitransparent);
   }
 }
