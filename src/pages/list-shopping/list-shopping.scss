@@ -1,0 +1,56 @@
+page-list-shopping {
+
+  // List
+  .list {
+    background-color: #fff;
+    .shop-name {
+      font-weight: 900;
+      font-size: 4vh;
+      padding: 4vh 0 2vh 4vh;
+      margin: 0;
+    }
+    .product {
+      display: flex;
+      padding-left: 4vh;
+      margin: 0;
+      font-size: 3vh;
+      white-space: nowrap;
+      .product-name {
+        text-transform: uppercase;
+        background-color: #fff;
+        color: $text-color;
+      }
+      .product-quantity {
+        background-color: #fff;
+        font-weight: bold;
+      }
+      .product-sale {
+        img {
+          height: 3vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 1vh 0 2vh;
+        }
+      }
+      .product-dots { overflow: hidden; flex: auto}
+      .product-name, .product-quantity, .product-close {padding: 0 1vh;}
+      // stili per i prodotti in offerta
+      .product-quantity.sale, .product-name.sale { color: #fff;}
+    }
+    .list-total {
+      background-color: #000;
+      color: #fff;
+      height: 6vh;
+      margin: 4vh 0 0 0;
+    }
+  }
+  .purple {
+    border-top: 4px solid $purple;
+    .shop-name, .product-quantity {color: $purple }
+    .product-close {background-color: $purple; }
+    // stili per i prodotti in offerta
+    .product-name.sale, .product-sale.sale  {background-color: $purple; }
+    .product-quantity.sale {background-color: $darkpurple; }
+  }
+}

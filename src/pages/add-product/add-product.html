@@ -1,0 +1,162 @@
+<!-- ADD PRODUCT PAGE -->
+<ion-content *ngIf='section === "editProductPage"'>
+  <div class="container">
+    <div class="product-name">
+      <input [(ngModel)]="product.name" placeholder="Nome">
+    </div>
+    <!-- NORMAL SECTION -->
+    <div class="product-section normal">
+      <p class="buttonText">Normale</p>
+      <div class="product-section-content">
+        <!-- PRICE -->
+        <div class="product-price">
+          <div *ngIf='!priceClicked' (tap)="priceClicked = true">--.-- €</div>
+          <div *ngIf='priceClicked'>
+            <input [(ngModel)]="product.price"> €</div>
+        </div>
+        <ion-list radio-group color-primary [(ngModel)]="product.unity">
+          <ion-item class="custom-radio">
+            <ion-label>Alla confezione</ion-label>
+            <ion-radio item-right value="confezione"></ion-radio>
+          </ion-item>
+          <ion-item class="custom-radio">
+            <ion-label>Al kilo</ion-label>
+            <ion-radio item-right value="kilo"></ion-radio>
+          </ion-item>
+          <ion-item class="custom-radio">
+            <ion-label>Al litro</ion-label>
+            <ion-radio item-right value="litro"></ion-radio>
+          </ion-item>
+
+        </ion-list>
+        <!-- SHOP -->
+        <div class="product-shop mt-2">
+          <input placeholder="negozio" [(ngModel)]="product.shop">
+        </div>
+      </div>
+    </div>
+    <!-- SALE SECTION -->
+    <div class="product-section sale">
+      <p class="buttonText">Offerta</p>
+      <div class="product-section-content">
+        <!-- PRICE -->
+        <div class="product-price">
+          <div *ngIf='priceSaleClicked !== true' (tap)="priceSaleClicked = true">--.-- €</div>
+          <div *ngIf='priceSaleClicked'>
+            <input [(ngModel)]="product.priceSale"> €</div>
+        </div>
+        <ion-list radio-group [(ngModel)]="product.unitySale">
+          <ion-item class="custom-radio">
+            <ion-label>Alla confezione</ion-label>
+            <ion-radio item-right color="secondary" value='confezione'></ion-radio>
+          </ion-item>
+          <ion-item class="custom-radio">
+            <ion-label>Al kilo</ion-label>
+            <ion-radio item-right color="secondary" value="kilo"></ion-radio>
+          </ion-item>
+          <ion-item class="custom-radio">
+            <ion-label>Al litro</ion-label>
+            <ion-radio item-right color="secondary" value="litro"></ion-radio>
+          </ion-item>
+
+        </ion-list>
+        <!-- SHOP -->
+        <div class="product-shop mt-2">
+          <input placeholder="negozio" [(ngModel)]="product.shopSale">
+        </div>
+      </div>
+    </div>
+    <!-- BUTTONS SECTION -->
+    <div class="button-section">
+      <div class="row">
+        <div class="button save" (tap)='save()'>
+          <img src='assets/imgs/icon_save.png' />
+          <span>Salva</span>
+        </div>
+        <div class="button delete" (tap)='delete()'>
+          <img src='assets/imgs/icon_delete.png' />
+          <span>Cancella</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="button back" (tap)="goBack()">
+          <img src='assets/imgs/icon_back.png' />
+          <span>Indietro</span>
+        </div>
+        <div class="button home" (tap)="goToPage('HomePage')">
+          <img src='assets/imgs/icon_home.png' />
+          <span>Home</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<!-- PRODUCT PAGE -->
+<ion-content *ngIf='section === "productPage"'>
+  <div class="container">
+    <div class="product-name">
+      <p class="buttonText">Nome</p>
+      <div>{{product.name}}</div>
+    </div>
+    <!-- NORMAL SECTION -->
+    <div class="product-section noEdit normal">
+      <p class="buttonText">Normale</p>
+      <div class="product-section-content">
+        <!-- PRICE -->
+        <div class="product-price">{{product.price}} €</div>
+        <div class='product-unity'>{{product.unity}}</div>
+        <!-- SHOP -->
+        <div class="product-shop mt-2">{{product.shop}}</div>
+        <!-- ADD TO CART -->
+        <div class="add-to-cart" (tap)='addToCart(product)'>
+          <div class='cart-icon'>
+            <img src='assets/imgs/icon_add_to_cart.png' />
+          </div>
+          <span class='text'>Nel carrello</span>
+        </div>
+      </div>
+    </div>
+    <!-- NORMAL SECTION -->
+    <div class="product-section noEdit sale">
+      <p class="buttonText">Normale</p>
+      <div class="product-section-content">
+        <!-- PRICE -->
+        <div class="product-price">{{product.priceSale}} €</div>
+        <div class='product-unity'>{{product.unitySale}}</div>
+        <!-- SHOP -->
+        <div class="product-shop mt-2">{{product.shopSale}}</div>
+        <!-- ADD TO CART -->
+        <div class="add-to-cart" (tap)='addToCart(product)'>
+          <div class='cart-icon'>
+            <img src='assets//imgs/icon_add_to_cart.png' />
+          </div>
+          <span class='text'>Nel carrello</span>
+        </div>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <div class="button-section">
+      <div class="row">
+        <div class="button save" (tap)='edit()'>
+          <img src='assets/imgs/icon_edit.png' />
+          <span>Modifica</span>
+        </div>
+        <div class="button delete" (tap)='delete()'>
+          <img src='assets/imgs/icon_delete.png' />
+          <span>Cancella</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="button back" (tap)="goBack()">
+          <img src='assets/imgs/icon_back.png' />
+          <span>Indietro</span>
+        </div>
+        <div class="button home" (tap)="goToPage('HomePage')">
+          <img src='assets/imgs/icon_home.png' />
+          <span>Home</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

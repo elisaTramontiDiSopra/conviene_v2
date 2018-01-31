@@ -1,3 +1,50 @@
 page-home {
-
+  .buttonContainer {
+    width: 40vw;
+    position: absolute;
+    right: 0;
+  }
+  .functionButtons {
+    width: 100%;
+    height: 20vh;
+    color: white;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      height: 15vh;
+      margin-left: 6vw
+    }
+  }
+  .buttonText{
+    //transform: rotate(270deg);
+    height: 100%;
+    width: 8vw;
+    position: absolute;
+    left: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    background-color: rgba(0,0,0,0.2);
+  }
+  #product-add {
+    background-color: $purple;
+  }
+  #product-list {
+    background-color: $darkpurple;
+  }
+  #conviene {
+    background-color: $orange;
+  }
+  #cart-add {
+    background-color: $cerulean;
+  }
+  #shopping-list {
+    background-color: $darkblue;
+  }
 }

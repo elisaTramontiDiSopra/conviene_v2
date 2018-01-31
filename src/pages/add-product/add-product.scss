@@ -1,0 +1,253 @@
+page-add-product {
+  $padding-right: 4vw;
+
+  ion-content {
+    text-align: right;
+    position: absolute;
+    right: 0;
+  }
+  .container {
+    width: 55vw;
+    position: absolute;
+    right: 0;
+  }
+  input {
+    border: none;
+    text-align: right;
+    background-color: transparent;
+  }
+  .product-name {
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vw;
+    color: #282828;
+    border-bottom: 1px solid #dedede;
+    padding-right: $padding-right;
+    position: relative;
+    input {
+      text-transform: uppercase;
+      width: 100%;
+    }
+    .buttonText {
+      background-color: #777;
+      height: 10vh;
+      width: 8vw;
+      position: absolute;
+    }
+  }
+  .buttonText{
+    height: 30vh;
+    width: 8vw;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    margin: 0 !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color: white !important;
+    font-size: 2vh;
+  }
+  .product-section {
+    position: relative;
+    height: 30vh;
+    border-bottom: 1px solid #dedede;
+    //padding-right: 3vw;
+    .buttonText {
+      height: 30vh;
+      width: 8vw;
+      position: relative;
+      left: 0;
+      bottom: 0;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+    .product-section-content {
+      position: absolute;
+      top: 1vh;
+      right: $padding-right;
+      .product-price {
+        border: none;
+        font-size: 12vw;
+        font-weight: bold;
+        //margin-bottom: 1vh;
+        input {
+          border: none;
+          width: 30vw;
+        }
+      }
+      ion-list {
+        align-items: flex-end;
+        margin: 2vh 0;
+      }
+      .item-block {
+        min-height: 0px; //per eliminare l'altezza minima di default
+      }
+      ion-item {
+        font-size: 3vw;
+        text-align: right;
+        text-transform: uppercase;
+        background-color: transparent !important;
+        height: 3.5vh;
+        .item-inner {
+          padding: 0;
+          //height: 4vh !important;
+          background-color: transparent;
+          border: none;
+          //height: 40px !important;
+        }
+        .radio {
+          margin: 5px 0 !important;
+        }
+        .radio-icon {
+          width: 14px;
+          height: 14px;
+          .radio-inner{
+            top: 1px;
+            left: 1px;
+          }
+        }
+        label {
+          color: #444;
+          font-size: 3vw;
+          text-transform: uppercase;
+        }
+      }
+      .product-shop{
+        border: none;
+        border-bottom: 1px solid #dedede;
+        width: 40vw;
+        margin: 3vw 0 0 15vw;
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .normal{
+    color: $purple;
+    .buttonText{
+      background-color: $darkpurple;
+      border-left: 2px solid $purple;
+    }
+  }
+  .sale {
+    color: $orange;
+    .buttonText{
+      background-color: $darkorange;
+      border-left: 2px solid $orange;
+    }
+  }
+  //BUTTON SECTION
+  .button-section {
+    height: 30vh;
+    .button {
+      width: 15vh;
+      height: 15vh;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 8vh;
+        height: 8vh;
+      }
+      span {
+        display: block;
+        text-transform: uppercase;
+        margin-top: 1vh;
+      }
+    }
+    .save {
+      background-color: $cerulean;
+    }
+    .delete {
+      background-color: $darkblue;
+    }
+    .back {
+      background-color: $darker-cerulean;
+    }
+    .home {
+      background-color: $darker-darkblue;
+    }
+
+  }
+  //NO EDIT - PRODUCT PAGE
+  .noEdit {
+    .product-section {
+      border: none !important;
+    }
+    .product-unity{
+      color: $text-color;
+      text-transform: uppercase;
+    }
+    .product-shop {
+      font-size: 4vh;
+      font-weight: bold;
+      height: 5vh;
+      border: none !important;
+    }
+    .add-to-cart {
+      height: 6vh;
+      width: 40vw;
+      color: #fff;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-right: 1vh;
+      font-size: 2vh;
+      position: absolute;
+      right: 0;
+      margin-top: 2vh;
+      //bottom: 2vh;
+      .cart-icon {
+        width: 6vh;
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          height: 5vh;
+        };
+      }
+    }
+    &.normal {
+      .product-shop {
+        color: $purple;
+      }
+      .add-to-cart {
+        background-color: $purple;
+        .cart-icon {
+          background-color: $darkpurple;
+        }
+      }
+    }
+    &.sale {
+      .product-shop {
+        color: $orange;
+      }
+      .add-to-cart {
+        background-color: $orange;
+        .cart-icon {
+          background-color: $darkorange;
+        }
+      }
+    }
+  }
+
+}

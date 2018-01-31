@@ -1,0 +1,137 @@
+page-list-products {
+  $padding-right: 4vw;
+
+  ion-content {
+    text-align: right;
+    position: absolute;
+    right: 0;
+  }
+  .container {
+    width: 70vw;
+    position: absolute;
+    right: 0;
+    height: 100vh;
+  }
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4vw;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 1vh;
+    // Item Text
+    .text {
+      font-size: 3vh;
+      text-align: left;
+      font-size: 3vh;
+      text-transform: uppercase;
+      font-weight: 300;
+      .price {
+        text-transform: initial;
+        font-size: 2.5vh;
+        font-weight: bold;
+      }
+    }
+    // Buttons
+    .icons {
+      display: flex;
+      .button {
+        width: 5vh;
+        height: 6vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.normal { background-color: $purple };
+        &.sale { background-color: $orange };
+        &.product { background-color: $cerulean };
+      }
+    }
+  }
+
+  // Modal
+  .modal {
+    font-size: 3vh;
+    font-weight: bolder;
+    .normal { background-color: $purple;}
+    .sale { background-color: $orange;}
+    .icon {
+      width: 24vh;
+      height: 24vh;
+      margin-bottom: 8vh;
+    }
+    p {
+      color: #fff;
+    }
+    .input-more-less-container {
+      display: flex;
+      font-size: 3vh;
+      font-weight: bolder;
+      .quantity {
+        width: 5vh;
+        height: 5vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+      input {
+        height: 5vh;
+        width: 14vh;
+        text-align: center;
+        color: $text-color;
+      }
+    }
+    .text {
+      width: 70vw;
+      margin: 5vh;
+      text-align: center;
+    }
+    .button-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .button {
+        width: 12vh;
+        height: 12vh;
+        color: #fff;
+        margin: 0;
+        margin-right: 2vh;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 8vh;
+          height: 8vh;
+        }
+        span {
+          display: block;
+          text-transform: uppercase;
+          margin-top: 1vh;
+        }
+      }
+    }
+  }
+
+  // Normal vs Sale
+  .normal {
+    color: $purple;
+    .modal-add {
+      background-color: $cerulean;
+    }
+    .modal-delete {
+      background-color: $darker-darkblue;
+    }
+  }
+  .sale {
+    color: $orange;
+    .modal-add {
+      background-color: $orange;
+    }
+    .modal-delete {
+      background-color: $darkorange;
+    }
+  }
+
+}

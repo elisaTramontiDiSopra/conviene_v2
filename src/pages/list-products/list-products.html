@@ -1,0 +1,56 @@
+<!-- ADD PRODUCT PAGE -->
+<ion-content>
+  <!-- ADD MODAL -->
+  <div *ngIf='showAddModal===true' class="modal" [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}">
+    <div class='icon' [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}" >
+      <img src='assets/imgs/icon_shopping_list.png' />
+    </div>
+    <!-- QUANTITY -->
+    <p>Quantità</p>
+    <div class="input-more-less-container">
+      <div class='quantity' [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}" (tap)='quantity = quantity-1'>-</div>
+      <input [(ngModel)]="quantity">
+      <div class='quantity' [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}" (tap)='quantity = quantity+1'>+</div>
+    </div>
+    <p class="text">Stai aggiungendo {{quantity}} di {{productForModal.name}} alla lista {{productForModal.shop}} </p>
+    <div class='button-section'>
+    <button class="button modal-add" (tap)='addProductToList(productForModal)'>
+      <img src='assets/imgs/icon_save.png' />
+    </button>
+    <button class="button modal-delete" (tap)='this.quantity = 1; showAddModal = false;'>
+      <img src='assets/imgs/icon_delete.png' />
+    </button>
+    </div>
+  </div>
+  <div class="container">
+    <div class="search">
+      asdadsasdasd
+    </div>
+    <div class="list">
+      <div class="list-item" *ngFor='let product of this.productsObservableList | async'>
+        <div class="text">
+          <div class="product">{{product.name}}</div>
+          <div class="price">
+            <span class="normal">{{product.price}} €</span> vs
+            <span class="sale">{{product.priceSale}} €</span>
+          </div>
+        </div>
+        <div class="icons">
+          <button class="button normal" (tap)='showModal("normal", product)'>
+            <img src='assets/imgs/icon_add_to_cart.png' />
+          </button>
+          <button class="button sale">
+            <img src='assets/imgs/icon_add_to_cart.png' (tap)='showModal("sale", product)' />
+          </button>
+          <button class="button product">
+            <img src='assets/imgs/icon_product.png' (tap)='goToProduct("product")' />
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class='buttons'>
+      <div (tap)='goToPage(ListShoppingPage)'><img src='assets/imgs/icon_shopping_list.png' /></div>
+      <div><img src='assets/imgs/icon_shopping_list.png' /></div>
+    </div>
+  </div>
+</ion-content>

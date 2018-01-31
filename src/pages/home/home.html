@@ -1,14 +1,24 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <div class="buttonContainer">
+    <div id="product-add" class="functionButtons" (tap)="goToPage('AddProductPage')">
+      <p class="buttonText">Nuovo prodotto</p>
+      <img src='assets/imgs/icon_add_product.png' />
+    </div>
+    <div id="product-list" class="functionButtons" (tap)="goToPage('ListProductsPage')">
+      <p class="buttonText">Lista prodotti</p>
+      <img src='assets/imgs/icon_product.png' />
+    </div>
+    <div id="conviene" class="functionButtons" (tap)="goToPage('ConvienePage')">
+      <p class="buttonText">Conviene</p>
+      <img src='assets/imgs/icon_conviene.png' />
+    </div>
+    <div id="cart-add" class="functionButtons" (tap)="goToPage('AddProductPage')">
+      <p class="buttonText">Metti in lista</p>
+      <img src='assets/imgs/icon_add_to_cart.png' />
+    </div>
+    <div id="shopping-list" class="functionButtons">
+      <p class="buttonText">Lista spesa</p>
+      <img src='assets/imgs/icon_shopping_list.png'(tap)="goToPage('ListShoppingPage')" />
+    </div>
+  </div>
 </ion-content>
