@@ -1,5 +1,10 @@
 page-list-shopping {
+  ul  {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 
+  }
   // List
   .list {
     background-color: #fff;
@@ -15,25 +20,20 @@ page-list-shopping {
       margin: 0;
       font-size: 3vh;
       white-space: nowrap;
+      height: 6vh;
       .product-name {
         text-transform: uppercase;
         background-color: #fff;
         color: $text-color;
-        padding-right: 1vh;
+        padding: 0 2vh 0 1vh;
       }
+      .product-sale{padding-right: 1vh;}
       .product-quantity {
         background-color: #fff;
         font-weight: bold;
+        border-right: 4px solid #fff;
       }
-      .product-sale {
-        img {
-          height: 3vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0 1vh 0 2vh;
-        }
-      }
+
       .product-dots { overflow: hidden; flex: auto}
       .product-close { border-left: 4px solid #fff; color: #fff}
       .product-quantity, .product-close {padding: 0 1vh;}
@@ -42,24 +42,103 @@ page-list-shopping {
     }
     .list-close {
       color: #fff;
-      height: 6vh;
+      height: 7vh;
       padding: 0 4vh;
+      font-size: 3vh;
+      text-transform: uppercase;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-top: 2vh;
+      .close {
+        padding: 0 1vh;
+      }
     }
   }
-  .purple {
+  //PURPLE
+  li:nth-child(3n+1) {
     border-top: 4px solid $purple;
     .shop-name, .product-quantity {color: $purple }
-    .product-close, .list-close {background-color: $purple; }
+    .product-close, .list-close, .product-sale {background-color: $purple; }
     // stili per i prodotti in offerta
     .product-name.sale, .product-sale.sale  {background-color: $purple; }
     .product-quantity.sale {background-color: $darkpurple; }
+  }
+  //YELLOW
+  li:nth-child(3n+2) {
+    border-top: 4px solid $orange;
+    .shop-name, .product-quantity {color: $orange }
+    .product-close, .list-close, .product-sale {background-color: $orange; }
+    // stili per i prodotti in offerta
+    .product-name.sale, .product-sale.sale  {background-color: $orange; }
+    .product-quantity.sale {background-color: $darkorange; }
+  }
+  //BLUE
+  li:nth-child(3n+3) {
+    border-top: 4px solid $cerulean;
+    .shop-name, .product-quantity {color: $cerulean }
+    .product-close, .list-close, .product-sale {background-color: $cerulean; }
+    // stili per i prodotti in offerta
+    .product-name.sale, .product-sale.sale  {background-color: $cerulean; }
+    .product-quantity.sale {background-color: $darker-cerulean; }
   }
 
   .semitrasp{
     opacity: 0.4;
   }
 
+
+
+  // Modal
+  .modal {
+    font-size: 3vh;
+    font-weight: bolder;
+    .normal { background-color: $purple;}
+    .sale { background-color: $orange;}
+    .icon {
+      width: 15vh;
+      height: 15vh;
+      margin-bottom: 5vh;
+      background-color: $cerulean;
+      color: #fff;
+      font-size: 12vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .text {
+      color: #fff;
+      width: 70vw;
+      margin: 5vh;
+      text-align: center;
+    }
+    .button-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .button {
+        width: 15vh;
+        height: 15vh;
+        color: #fff;
+        margin: 0;
+        margin-right: 2vh;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 8vh;
+          height: 8vh;
+        }
+        span {
+          display: block;
+          text-transform: uppercase;
+          margin-top: 1vh;
+        }
+      }
+      .cerulean { background-color: $cerulean; }
+      .darkblue { background-color: $darkblue; }
+    }
+  }
 }

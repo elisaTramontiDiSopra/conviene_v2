@@ -54,36 +54,44 @@ export class ListProductsPage {
   }
 
   addProductToList(product) {
-    console.log(product);
     console.log(product.name);
     console.log(product.shop);
+    console.log(product.shopSale);
     this.shoppingListsCollection = this.afs.collection("lists");
     this.shoppingShopsCollection = this.afs.collection("shops");
     if (this.adding === "normal") {
       //aggiungo il prodotto alla collection con il nome del negozio
-      this.shoppingListsCollection
-        .doc("shops")
-        .collection(product.shop)
-        .add({
+      this.shoppingListsCollection.doc("shops").collection(product.shop).doc(product.id).set({
           name: product.name,
           quantity: this.quantity,
           price: product.price,
           sale: false,
-          shop: product.shop
+          shop: product.shop,
+          id: product.id
         });
-      //vedo se il nome del negozio è già in lista
-      this.shoppingShopsCollection.doc("shopLists").valueChanges().subscribe(res => {
-        if (res === null) {
-          this.shoppingShopsCollection
-            .doc("shopLists")
-            .set({ [product.shop]: true });
-        } else {
-          this.shoppingShopsCollection
-            .doc("shopLists")
-            .update({ [product.shop]: true });
-        }
-      });
+    } else if (this.adding === "sale") {
+      //aggiungo il prodotto alla collection con il nome del negozio
+      this.shoppingListsCollection.doc("shops").collection(product.shop).doc(product.id).set({
+          name: product.name,
+          quantity: this.quantity,
+          price: product.priceSale,
+          sale: true,
+          shop: product.shopSale,
+          id: product.id
+        });
     }
+    //vedo se il nome del negozio è già in lista
+    this.shoppingShopsCollection.doc("shopLists").valueChanges().subscribe(res => {
+      if (res === null) {
+        this.shoppingShopsCollection
+          .doc("shopLists")
+          .set({ [product.shop]: true });
+      } else {
+        this.shoppingShopsCollection
+          .doc("shopLists")
+          .update({ [product.shop]: true });
+      }
+    });
     this.showAddModal = false;
   }
 

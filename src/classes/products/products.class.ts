@@ -8,4 +8,5 @@ export interface Product {
   priceSale: any;
   shopSale: string;
   unitySale: string;
+  id: any;
 }

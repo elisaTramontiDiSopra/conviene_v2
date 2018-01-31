@@ -1,16 +1,38 @@
 <ion-content>
-  <div *ngFor='let shop of shopsArray' class='list purple'>
-    <p class='shop-name'>{{shop.name}}</p>
-    <div *ngFor='let product of shop.products, let i = index' class='product'  [ngClass]='{"semitrasp" : semitransparent[shop.name][i] === true}'>
-      <span class='product-name' [ngClass]='{"sale" : product.sale}'>{{product.name}}</span>
-      <span *ngIf='product.sale' class='product-sale'><img src='assets/imgs/icon_conviene.png' /></span>
-      <span class='product-quantity'>x{{product.quantity}}</span>
-      <span class='product-dots'>.....................................................................</span>
-      <span class='product-close' (tap)='transp(shop.name, i)'>X</span>
-    </div>
-    <div class='list-close'>
-      Spesa fatta! <span class='product-close'>X</span>
+
+  <!-- ADD MODAL -->
+  <div *ngIf='showDeleteModal===true' class="modal" [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}">
+    <div *ngIf='secureDelete === false' class="icon"> ! </div>
+    <p class="text">{{deleteMessage}} </p>
+    <div class='button-section'>
+      <button class="button cerulean" (tap)='deleteList()'>
+        <img src='assets/imgs/icon_save.png' />
+        <span>Conferma</span>
+      </button>
+      <button class="button darkblue" (tap)='showDeleteModal = false'>
+        <img src='assets/imgs/icon_back.png' />
+        <span>Indietro</span>
+      </button>
     </div>
   </div>
+
+
+  <ul>
+    <li *ngFor='let shop of shopsArray, let i = index' class='list'>
+      <p class='shop-name'>{{shop.name}}</p>
+      <div *ngFor='let product of shop.products, let i = index' class='product' [ngClass]='{"semitrasp" : semitransparent[shop.name][i] === true}'>
+        <span class='product-name' [ngClass]='{"sale" : product.sale}'>{{product.name}}</span>
+        <span *ngIf='product.sale === true' class='product-sale'>
+          <img src='assets/imgs/icon_conviene_mini.png' /> </span>
+        <span class='product-quantity' [ngClass]='{"sale" : product.sale}'>x{{product.quantity}}</span>
+        <span class='product-dots'>.....................................................................</span>
+        <span class='product-close' (tap)='transp(shop.name, i)'>X</span>
+      </div>
+      <div class='list-close'>
+        Spesa Finita!
+        <span class='close' (tap)='showDeleteModalConfirmation(shop.name)'>X</span>
+      </div>
+    </li>
+  </ul>
 
 </ion-content>

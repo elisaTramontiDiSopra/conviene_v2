@@ -56,7 +56,10 @@ export class AddProductPage implements OnInit {
   //BUTTONS FUNCTIONS
   save() {
     if (this.product.name !== '' && (this.product.price !== null || this.product.priceSale !== null)) {
-      this.productCollection.add(this.product);
+      // creo un id (anche come proprietà), lo salvo come nome del documento e poi metto nel documento
+      // tutte le proprietà del prodotto, id compreso
+      this.product.id = this.afs.createId();
+      this.productCollection.doc(this.product.id).set(this.product);
       this.section = 'productPage';
     } else {
       this.showAlertForNameAndPrice = true;
