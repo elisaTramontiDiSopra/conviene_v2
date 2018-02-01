@@ -121,3 +121,19 @@ $darker-darkblue: #1f2d3e;
   align-items: center;
   flex-direction: column;
 }
+
+// Spinner
+.blk{
+  background: rgba(0,0,0,0.8);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top:0;
+  left: 0;
+}
+ion-spinner {
+  position: initial !important;
+  top: 40vh;
+  circle {stroke: $cerulean !important;}
+  svg {width: 60% !important; left: 20% !important}
+}
