@@ -67,7 +67,7 @@ export class AddProductPage implements OnInit {
     }
   }
   delete() {
-    this.product = {name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo'};
+    this.product = {name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo', id: ''};
     this.priceClicked = false;
     this.priceSaleClicked = false;
   }

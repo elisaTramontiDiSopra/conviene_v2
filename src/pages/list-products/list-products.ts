@@ -54,9 +54,38 @@ export class ListProductsPage {
   }
 
   addProductToList(product) {
-    console.log(product.name);
-    console.log(product.shop);
-    console.log(product.shopSale);
+    // add document with the name of the shop and products as property with the id as name property (to avoid copies)
+    this.shoppingListsCollection = this.afs.collection("lists");
+    if (this.adding === "normal") {
+      //aggiungo il prodotto alla collection con il nome del negozio
+      this.shoppingListsCollection.doc(product.shop).set({
+        shopName: product.shop,
+        products: {
+          [product.id]: {
+            name: product.name,
+            quantity: this.quantity,
+            price: product.price,
+            sale: false,
+            shop: product.shop,
+            id: product.id
+          }
+        }},{merge: true});
+      } else if (this.adding === "sale") {
+        //aggiungo il prodotto alla collection con il nome del negozio
+        this.shoppingListsCollection.doc(product.shop).set({
+          shopName: product.shop,
+          products: {
+            [product.id]: {
+              name: product.name,
+              quantity: this.quantity,
+              price: product.price,
+              sale: false,
+              shop: product.shop,
+              id: product.id
+            }
+          }},{merge: true});
+      }
+    /* THIS DOWN HERE WORKS
     this.shoppingListsCollection = this.afs.collection("lists");
     this.shoppingShopsCollection = this.afs.collection("shops");
     if (this.adding === "normal") {
@@ -91,7 +120,7 @@ export class ListProductsPage {
           .doc("shopLists")
           .update({ [product.shop]: true });
       }
-    });
+    });*/
     this.showAddModal = false;
   }
 

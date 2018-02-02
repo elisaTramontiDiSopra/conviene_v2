@@ -14,28 +14,27 @@
         <span>Indietro</span>
       </button>
       <div class="blk" *ngIf='showSpinner===true'>
-      <ion-spinner>spinner </ion-spinner>
+        <ion-spinner>spinner </ion-spinner>
       </div>
     </div>
   </div>
 
-
   <ul>
-    <li *ngFor='let shop of shopsArray, let i = index' class='list'>
-      <p class='shop-name'>{{shop.name}}</p>
-      <div *ngFor='let product of shop.products, let i = index' class='product' [ngClass]='{"semitrasp" : semitransparent[shop.name][i] === true}'>
+    <li *ngFor='let shop of shoppingLists' class='list'>
+      <p class='shop-name'>{{shop.shopName}}</p>
+      <div *ngFor='let product of shop.products, let i = index' class='product' [ngClass]='{"semitrasp" : this.semitransparent[shop.shopName][i]}'>
         <span class='product-name' [ngClass]='{"sale" : product.sale}'>{{product.name}}</span>
         <span *ngIf='product.sale === true' class='product-sale'>
           <img src='assets/imgs/icon_conviene_mini.png' /> </span>
         <span class='product-quantity' [ngClass]='{"sale" : product.sale}'>x{{product.quantity}}</span>
         <span class='product-dots'>.....................................................................</span>
-        <span class='product-close' (tap)='transp(shop.name, i)'>X</span>
+        <span class='product-close' (tap)='this.semitransparent[shop.shopName][i] = !this.semitransparent[shop.shopName][i]'>X</span>
       </div>
       <div class='list-close'>
         Spesa Finita!
-        <span class='close' (tap)='showDeleteModalConfirmation(shop.name)'>X</span>
+        <span class='close' (tap)='showDeleteModalConfirmation(shop.shopName)'>X</span>
       </div>
     </li>
-  </ul>
 
+  </ul>
 </ion-content>

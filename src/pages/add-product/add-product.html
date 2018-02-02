@@ -2,7 +2,7 @@
 <ion-content *ngIf='section === "editProductPage"'>
   <div class="container">
     <div class="product-name">
-      <input [(ngModel)]="product.name" placeholder="Nome">
+      <input [(ngModel)]="product.name" onClick="this.setSelectionRange(0, this.value.length)" placeholder="Nome">
     </div>
     <!-- NORMAL SECTION -->
     <div class="product-section normal">
@@ -10,9 +10,9 @@
       <div class="product-section-content">
         <!-- PRICE -->
         <div class="product-price">
-          <div *ngIf='!priceClicked' (tap)="priceClicked = true">--.-- €</div>
+          <div *ngIf='!priceClicked' (tap)="priceClicked = true" onClick="this.setSelectionRange(0, this.value.length)">--.-- €</div>
           <div *ngIf='priceClicked'>
-            <input [(ngModel)]="product.price"> €</div>
+            <input [(ngModel)]="product.price" onClick="this.setSelectionRange(0, this.value.length)"> €</div>
         </div>
         <ion-list radio-group color-primary [(ngModel)]="product.unity">
           <ion-item class="custom-radio">
@@ -31,7 +31,7 @@
         </ion-list>
         <!-- SHOP -->
         <div class="product-shop mt-2">
-          <input placeholder="negozio" [(ngModel)]="product.shop">
+          <input placeholder="negozio" onClick="this.setSelectionRange(0, this.value.length)" [(ngModel)]="product.shop">
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <div class="product-price">
           <div *ngIf='priceSaleClicked !== true' (tap)="priceSaleClicked = true">--.-- €</div>
           <div *ngIf='priceSaleClicked'>
-            <input [(ngModel)]="product.priceSale"> €</div>
+            <input [(ngModel)]="product.priceSale" onClick="this.setSelectionRange(0, this.value.length)"> €</div>
         </div>
         <ion-list radio-group [(ngModel)]="product.unitySale">
           <ion-item class="custom-radio">
@@ -62,7 +62,7 @@
         </ion-list>
         <!-- SHOP -->
         <div class="product-shop mt-2">
-          <input placeholder="negozio" [(ngModel)]="product.shopSale">
+          <input placeholder="negozio" onClick="this.setSelectionRange(0, this.value.length)" [(ngModel)]="product.shopSale">
         </div>
       </div>
     </div>
