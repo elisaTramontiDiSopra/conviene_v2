@@ -6,12 +6,7 @@ page-list-products {
     position: absolute;
     right: 0;
   }
-  .container {
-    width: 70vw;
-    position: absolute;
-    right: 0;
-    height: 100vh;
-  }
+  .list {padding-top: 11vh}
   .list-item {
     display: flex;
     justify-content: space-between;
@@ -47,7 +42,6 @@ page-list-products {
       }
     }
   }
-
   // Modal
   .modal {
     font-size: 3vh;
@@ -113,7 +107,6 @@ page-list-products {
       }
     }
   }
-
   // Normal vs Sale
   .normal {
     color: $purple;
@@ -131,6 +124,47 @@ page-list-products {
     }
     .modal-delete {
       background-color: $darkorange;
+    }
+  }
+  // Search bar
+  .search-bar {
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70vw;
+    z-index: 99;
+  }
+  ion-searchbar {
+    padding: 4vw !important;
+    color: $cerulean;
+    input.searchbar-input {
+      box-shadow: none !important;
+      border-radius: 0;
+      border-bottom: 2px solid $cerulean;
+    }
+  }
+  // Footer buttons
+  .footer-buttons {
+    height: 10vh;
+    background-color: #fff;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70vw;
+    z-index: 99;
+    .foot-button {
+      width: 50%;
+      margin: 1vw;
+      img {
+        height: 8vh;
+      }
+      &.darkblue {
+        img {transform: scale(0.85) !important}
+      }
     }
   }
 

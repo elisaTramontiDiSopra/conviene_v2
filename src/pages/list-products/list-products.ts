@@ -24,26 +24,32 @@ export class ListProductsPage {
   shoppingShopsCollection: AngularFirestoreCollection<any>;
 
   showAlertForNameAndPrice = false;
-  // Modal vars
-  showAddModal = false;
-  adding;
-  productForModal;
-  quantity = 1;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private afs: AngularFirestore
-  ) {}
+      /* MODALS*/ showAddModal = false; adding; productForModal;  quantity = 1;
+  /* SEARCH BAR*/ searchTerm; filterableProductList = []; completeProductList = []
+
+  constructor( public navCtrl: NavController, public navParams: NavParams,  private afs: AngularFirestore ) {
+    this.productCollection = this.afs.collection("products");
+    this.productsObservableList = this.productCollection.valueChanges()
+  }
 
   ngOnInit() {
-    this.productCollection = this.afs.collection("products");
-    /* this.productCollection = this.afs.collection('products', ref => {
-      return ref.orderBy('name');
-    }); */
-    this.productsObservableList = this.productCollection.valueChanges();
-    console.log(this.productCollection);
-    console.log(this.productsObservableList);
+    this.productsObservableList.subscribe(p => {
+      this.filterableProductList = p;
+      this.completeProductList = p;
+    });
+  }
+
+  searchProduct(searchTerm) {
+    this.filterableProductList = this.completeProductList.filter(prod => {
+      console.log(prod.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+      if(prod.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+      return prod
+      }
+    });
+    if (searchTerm === '') {
+      this.filterableProductList = this.completeProductList;
+    }
   }
 
   showModal(type, product) {

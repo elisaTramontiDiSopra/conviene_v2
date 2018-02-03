@@ -40,6 +40,9 @@ page-list-shopping {
       // stili per i prodotti in offerta
       .product-quantity.sale, .product-name.sale { color: #fff;}
     }
+    .semitrasp{
+      opacity: 0.4;
+    }
     .list-close {
       color: #fff;
       height: 7vh;
@@ -82,13 +85,6 @@ page-list-shopping {
     .product-name.sale, .product-sale.sale  {background-color: $cerulean; }
     .product-quantity.sale {background-color: $darker-cerulean; }
   }
-
-  .semitrasp{
-    opacity: 0.4;
-  }
-
-
-
   // Modal
   .modal {
     font-size: 3vh;
@@ -137,8 +133,7 @@ page-list-shopping {
           margin-top: 1vh;
         }
       }
-      .cerulean { background-color: $cerulean; }
-      .darkblue { background-color: $darkblue; }
     }
   }
+
 }

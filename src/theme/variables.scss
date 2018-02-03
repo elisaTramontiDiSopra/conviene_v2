@@ -109,8 +109,16 @@ $darker-darkblue: #1f2d3e;
 }
 .container {
   background-color: #fff;
+  width: 70vw;
+  position: absolute;
+  right: 0;
+  height: 100vh;
 }
-
+// Color
+.cerulean { background-color: $cerulean; }
+.darkblue { background-color: $darkblue; }
+.orange { background-color: $orange; }
+.purple { background-color: $purple; }
 // Modals
 .modal {
   height: 100vh;
@@ -121,7 +129,6 @@ $darker-darkblue: #1f2d3e;
   align-items: center;
   flex-direction: column;
 }
-
 // Spinner
 .blk{
   background: rgba(0,0,0,0.8);
