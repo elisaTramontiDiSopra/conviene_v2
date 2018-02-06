@@ -1,0 +1,200 @@
+page-product {
+  text-align: right;
+  .name {
+    min-height: 4rem !important;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    .vertical-text {
+      background-color: #777;
+      font-size: 1.5rem;
+    }
+  }
+  .product-section {
+    width: 100vw;
+    display: flex;
+    flex: 3 1 auto;
+    min-height: 14rem;
+    border-bottom: 1px solid #dedede;
+    .vertical-text {
+      width: 8vw;
+      position: relative;
+      left: 0;
+      bottom: 0;
+      margin: 0 !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      color: white !important;
+    }
+    .product-section-content {
+      width: 67vw;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .product-price {
+        border: none;
+        font-size: 5rem;
+        font-weight: bold;
+        input {
+          border: none;
+          width: 30vw;
+        }
+      }
+      .product-unity {
+        color: $text-color;
+        text-transform: uppercase;
+      }
+      .product-shop {
+        font-size: 3rem;
+        font-weight: bold;
+        //height: 4rem;
+        //border: none !important;
+      }
+    }
+    .add-to-cart-product {
+      width: 25vw;
+      color: #fff;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      img {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+    &.normal {
+      .product-shop,
+      .product-price {
+        color: $purple;
+      }
+    }
+    &.sale {
+      .product-shop,
+      .product-price {
+        color: $orange;
+      }
+    }
+  }
+
+  .button-section {
+    width: 100vw;
+    height: 18rem;
+    flex: 0 0 auto;
+    .col, .row { padding: 0; }
+    .col:first-child { width: 75vw !important;  }
+    .col:last-child { width: 25vw;  }
+    .button {
+      color: #fff;
+      width: 37.5vw;
+      height: 9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      span {
+        height: 100%;
+        width: 3rem;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+      }
+      img {
+        width: 5rem;
+        height: 5rem;
+      }
+      &:nth-child(odd) {
+        span { left: 0;   }
+        img { margin-left: 3rem; }
+      }
+      &:nth-child(even) {
+        span {right: 0; }
+        img { margin-right: 3rem; }
+      }
+    }
+    .options {
+      width: 25vw;
+      height: 18rem;
+      background-color: $darkest-darkblue;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      span {
+        text-transform: uppercase;
+        margin-top: 10px;
+      }
+      img {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+  }
+
+  .edit {
+    .product-section {
+      min-height: 18rem;
+    }
+    .col-product{
+      margin: 10px 2vw;
+      width: 43vw;
+    }
+    .col-product:last-child{border-left: 1px solid #dedede}
+    .product-price {
+      font-size: 5rem;
+      font-weight: bold;
+    }
+    ion-list {
+      align-items: flex-end;
+      .item-block {min-height: 0px; /*per eliminare l'altezza minima di default*/  }
+      ion-item {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        padding-left: 5px;
+        background-color: transparent !important;
+        height: 2.4rem;
+        .item-inner {
+          padding: 0;
+          padding-left: 5px;
+          background-color: transparent;
+          border: none !important;
+        }
+        .input-wrapper {text-align: right /*per cambiare l'allineamento*/}
+        .radio { margin: 5px 0 !important; }
+        .radio-icon {width: 14px; height: 14px;
+          .radio-inner {top: 1px; left: 1px;}
+        }
+        label {
+          color: #444;
+          font-size: 3vw;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .product-shop {
+      font-size: 2rem !important;
+      text-transform: lowercase !important;
+    }
+    input {
+      border: none;
+      text-align: right;
+      background-color: transparent;
+      border-bottom: 1px solid #dedede;
+      text-align: right;
+      width: 100%;
+    }
+  }
+
+}
