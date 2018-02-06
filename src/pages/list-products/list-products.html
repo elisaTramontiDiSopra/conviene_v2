@@ -40,11 +40,11 @@
           <button class="button normal" (tap)='showModal("normal", product)'>
             <img src='assets/imgs/icon_add_to_cart.png' />
           </button>
-          <button class="button sale">
-            <img src='assets/imgs/icon_add_to_cart.png' (tap)='showModal("sale", product)' />
+          <button class="button sale" (tap)='showModal("sale", product)'>
+            <img src='assets/imgs/icon_add_to_cart.png' />
           </button>
-          <button class="button product">
-            <img src='assets/imgs/icon_product.png' (tap)='goToProduct("product")' />
+          <button class="button product" (tap)='goToProduct(product)'>
+            <img src='assets/imgs/icon_product.png' />
           </button>
         </div>
       </div>

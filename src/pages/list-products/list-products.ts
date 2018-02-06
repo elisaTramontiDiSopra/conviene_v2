@@ -130,10 +130,11 @@ export class ListProductsPage {
     this.showAddModal = false;
   }
 
-  goToProduct(product) {
-    console.log(product);
-  }
   goToPage(page) {
     this.navCtrl.push(page);
+  }
+
+  goToProduct(prod) {
+    this.navCtrl.push("ProductPage", {section: "productPage", product: prod});
   }
 }

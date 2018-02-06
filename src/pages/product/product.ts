@@ -60,8 +60,7 @@ export class ProductPage {
       // creo un id (anche come proprietà), lo salvo come nome del documento e poi metto nel documento
       // tutte le proprietà del prodotto, id compreso
       // se l'id non esiste già vuol dire che il prodotto è nuovo e quindi lo creo, altrimenti aggiorno solo
-      //if (!this.product.id) {this.product.id = this.afs.createId();}
-      this.product.id = this.afs.createId();
+      if (!this.product.id) {this.product.id = this.afs.createId();}
       this.productCollection.doc(this.product.id).set(this.product);
       this.section = 'productPage';
     } else {
