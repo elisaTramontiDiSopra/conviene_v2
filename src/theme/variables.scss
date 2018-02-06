@@ -13,6 +13,7 @@ $app-direction: ltr;
 
 
 @import "ionic.globals";
+@import "general";
 
 
 // Shared Variables
@@ -47,6 +48,7 @@ $purple: #610539;
 $orange: #ff8607;
 $darkorange: #b25e05;
 $cerulean: #0777a1;
+$darkcerulean: #055370;
 $darker-cerulean: #055370;
 $darkblue: #2d4159;
 $darker-darkblue: #1f2d3e;
@@ -101,46 +103,4 @@ $darker-darkblue: #1f2d3e;
 .position-absolute-right {
   position: absolute;
   right: 0;
-}
-.content {
-  background-color: transparent !important;
-  background-image: url('../assets/imgs/bg.jpg') !important;
-  background-size: cover;
-}
-.container {
-  background-color: #fff;
-  width: 70vw;
-  position: absolute;
-  right: 0;
-  height: 100vh;
-}
-// Color
-.cerulean { background-color: $cerulean; }
-.darkblue { background-color: $darkblue; }
-.orange { background-color: $orange; }
-.purple { background-color: $purple; }
-// Modals
-.modal {
-  height: 100vh;
-  width: 100vw;
-  background-color: rgba(0,0,0,0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-// Spinner
-.blk{
-  background: rgba(0,0,0,0.8);
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top:0;
-  left: 0;
-}
-ion-spinner {
-  position: initial !important;
-  top: 40vh;
-  circle {stroke: $cerulean !important;}
-  svg {width: 60% !important; left: 20% !important}
 }

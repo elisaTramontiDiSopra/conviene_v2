@@ -1,0 +1,115 @@
+<ion-content>
+  <div class="container">
+    <div class="darkorange vertical-bar">Conviene ?</div>
+    <!-- WHITE -->
+    <div class="internal" *ngIf='white===true'>
+      <img src='assets/imgs/icon_conviene_yellow.png' />
+
+      <div class='input-text-container'>
+        <div class="title">Che prodotto vuoi confrontare?</div>
+        <div *ngIf='!showInputName' (tap)='showInputName = true' class="input-message">Nome prodotto</div>
+        <input [ngClass]="{'visible': showInputName, 'hidden': !showInputName}" class="name" [(ngModel)]="searchedProduct.name" (keyup)="searchProduct(searchedProduct.name)"
+          onClick="this.setSelectionRange(0, this.value.length)">
+        <div *ngIf='showProductSelect' class="product-list">
+          <button *ngFor='let product of filterableProductList' class="product" (tap)='selectProduct(product)'>{{product.name}}</button>
+        </div>
+        <div *ngIf='showPrice && !showInputPrice' (tap)='showPrice = false; showInputPrice = true' class="input-message">Con che prezzo?</div>
+        <input [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}" class="price" type="number" [(ngModel)]="searchedProduct.price"
+          (keyup)="checkPrice(searchedProduct.price)">
+      </div>
+
+      <div class="text-container" [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}">
+        {{convieneMessage}}
+        <!-- ADD TO CART -->
+        <div class="add-to-cart dark" (tap)='showUpdateProductModal()'>
+          <div class='cart-icon'>
+            <img src='assets/imgs/icon_add_to_cart.png' />
+          </div>
+          <span class='text'>Nel carrello</span>
+        </div>
+      </div>
+
+      <div class='footer'>
+        <button class='purple foot-button' (tap)='goToPage("ListProductsPage")'>
+          <img src='assets/imgs/icon_product.png' />
+        </button>
+        <button class='darkblue foot-button' (tap)='goToPage("HomePage")'>
+          <img src='assets/imgs/icon_home.png' />
+        </button>
+      </div>
+
+    </div>
+
+    <!-- YELLOW -->
+    <div class="internal yellow" *ngIf='yellow===true'>
+      <img src='assets/imgs/icon_conviene_outline.png' />
+      <div class='input-text-container'>
+        <div class="title">Che prodotto vuoi confrontare?</div>
+        <div *ngIf='!showInputName' (tap)='showInputName = true' class="input-message">Nome prodotto</div>
+        <input [ngClass]="{'visible': showInputName, 'hidden': !showInputName}" class="name" [(ngModel)]="searchedProduct.name" (keyup)="searchProduct(searchedProduct.name)"
+          onClick="this.setSelectionRange(0, this.value.length)">
+        <div *ngIf='showProductSelect' class="product-list">
+          <button *ngFor='let product of filterableProductList' class="product" (tap)='selectProduct(product)'>{{product.name}}</button>
+        </div>
+        <div *ngIf='showPrice && !showInputPrice' (tap)='showPrice = false; showInputPrice = true' class="input-message">Con che prezzo?</div>
+        <input [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}" class="price" type="number" [(ngModel)]="searchedProduct.price"
+          (keyup)="checkPrice(searchedProduct.price)">
+      </div>
+
+      <div class="text-container" [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}">
+        {{convieneMessage}}
+        <!-- ADD TO CART -->
+        <div class="add-to-cart dark" (tap)='showUpdateProductModal()'>
+          <div class='cart-icon'>
+            <img src='assets/imgs/icon_add_to_cart.png' />
+          </div>
+          <span class='text'>Nel carrello</span>
+        </div>
+      </div>
+
+      <div class='footer'>
+        <button class='foot-button' (tap)='goToPage("ListProductsPage")'>
+          <img src='assets/imgs/icon_product.png' />
+        </button>
+        <button class='foot-button' (tap)='goToPage("HomePage")'>
+          <img src='assets/imgs/icon_home.png' />
+        </button>
+      </div>
+
+    </div>
+
+<!-- DARK -->
+<div class="internal dark" *ngIf='dark===true'>
+    <img src='assets/imgs/icon_conviene_yellow.png' />
+    <div class='input-text-container'>
+      <div class="title">Che prodotto vuoi confrontare?</div>
+      <div *ngIf='!showInputName' (tap)='showInputName = true' class="input-message">Nome prodotto</div>
+      <input [ngClass]="{'visible': showInputName, 'hidden': !showInputName}" class="name" [(ngModel)]="searchedProduct.name" (keyup)="searchProduct(searchedProduct.name)"
+        onClick="this.setSelectionRange(0, this.value.length)">
+      <div *ngIf='showProductSelect' class="product-list">
+        <button *ngFor='let product of filterableProductList' class="product" (tap)='selectProduct(product)'>{{product.name}}</button>
+      </div>
+      <div *ngIf='showPrice && !showInputPrice' (tap)='showPrice = false; showInputPrice = true' class="input-message">Con che prezzo?</div>
+      <input [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}" class="price" type="number" [(ngModel)]="searchedProduct.price"
+        (keyup)="checkPrice(searchedProduct.price)">
+    </div>
+
+    <div class="text-container" [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}">
+      {{convieneMessage}}
+    </div>
+
+    <div class='footer'>
+      <button class='foot-button' (tap)='goToPage("ListProductsPage")'>
+        <img src='assets/imgs/icon_product.png' />
+      </button>
+      <button class='foot-button' (tap)='goToPage("HomePage")'>
+        <img src='assets/imgs/icon_home.png' />
+      </button>
+    </div>
+
+  </div>
+
+
+  </div>
+
+</ion-content>

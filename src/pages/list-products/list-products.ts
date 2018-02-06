@@ -16,8 +16,8 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 export class ListProductsPage {
   productCollection: AngularFirestoreCollection<Product>;
   productsObservableList: Observable<Product[]>;
-  productDocument: AngularFirestoreDocument<Product>;
-  productObservableDocument: Observable<Product>;
+  //productDocument: AngularFirestoreDocument<Product>;
+  //productObservableDocument: Observable<Product>;
 
   shoppingListsCollection: AngularFirestoreCollection<any>;
   shoppingListsObservable: Observable<any[]>;

@@ -102,69 +102,10 @@ export class ListShoppingPage implements OnDestroy {
     this.shoppingLists = [];
     setTimeout(() => {this.showSpinner = false; this.showDeleteModal = false;}, 1000)
   }
-    /* THIS DOWN HERE SORTS OF WORKS
 
-    this.listsSubscription.unsubscribe();
-    console.log("deleteeeeee");
-    var ind = this.listOfShops.indexOf(this.deleteShop);
-    var prod = this.arrayOfLists[ind];
-    console.log("array of lists "+this.arrayOfLists);
-    // 1 - Cancello la lista che c'è in arrayList corrispondende all'index del negozio (prodotti nel template)
-    // tolgo dall'array l'elemento che si trova all'indexOf(deleteShop)
-    this.arrayOfLists.splice(ind, 1);
-    console.log("array of lists spliced"+this.arrayOfLists);
-
-    // 2 - Cancello il nome dello shop da listOfShops (nome del negozio nel template)
-    this.listOfShops.splice(ind, 1);
-
-    // 3 - FIRESTORE: cancello il documento con la lista dei negozi: true,
-    //     creo un oggetto che abbia key il nome degli shop rimasti e value true
-    //     creo tempList perchè ListOfShops torna interno se lo porto dentro then
-    var tempShops = this.listOfShops;
-    this.shoppingShopsDocument.set({}).then(() => {
-      for (var i of tempShops) {
-        this.tempListOfShops[i] = true;
-      }
-    }).then(() => {
-      this.shoppingShopsDocument.set(this.tempListOfShops)
-    });
-
-    // 4 - FIRESTORE: cancello i documenti dalla lista con nome deleteShop
- */
-
-
-
-
-
-    // 1 - Cancello su firestore tutti i documenti della lista shop
-    /* for( var p of this.arrayOfLists[ind]) {
-      console.log(p);
-      this.shoppingListsCollection.doc("shops").collection(this.deleteShop).doc(p.id).delete();     } */
-    // 3 - Cancello la proprietà con il nome del delete shop da shops/shoplist su firestore
-    /* this.shoppingShopsDocument.update({[this.deleteShop]: firebase.firestore.FieldValue.delete()}).then(() => {
-      this.listOfShops.splice(ind, 1);
-      console.log("property deleted");     }) */
-
-  // 4 - Cancello la proprietà con il nome del negozio da shops/shopList
-  // 2 - Cancello il nome dello shop da listOfShops
-
-
-  /*  // cancello tutti i documenti nella lista con il nome deleteShop
-    this.shoppingListsCollection.doc("shops").collection(this.deleteShop).valueChanges().subscribe(product => {
-      for (var p of product) {
-        this.shoppingListsCollection.doc("shops").collection(this.deleteShop).doc(p.id).delete();
-      }
-    })
-
-    // cancello la proprietà con il nome deleteShop da shops > shopsLists
-    // questa non funziona se non c'è l'import di firebase da firebase/app
-    var delShop = this.deleteShop;
-    this.shoppingShopsDocument.update({[delShop]: firebase.firestore.FieldValue.delete()}).then(() => {
-      this.shopsArray = [];
-      this.semitransparent = {};
-      this.getShoppingLists()
-    })
-*/
+  goToPage(page) {
+    this.navCtrl.push(page);
+  }
 
   ngOnDestroy() {
     this.listsSubscription.unsubscribe();

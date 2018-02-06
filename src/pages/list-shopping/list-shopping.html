@@ -37,4 +37,17 @@
     </li>
   </ul>
 
+  <!-- FOOTER BUTTONS -->
+  <div *ngIf='!showDeleteModal' class='footer-buttons'>
+    <button class='orange foot-button' (tap)='goToPage("ConvienePage")'>
+      <img src='assets/imgs/icon_conviene.png' />
+    </button>
+    <button class='purple foot-button' (tap)='goToPage("ListProductsPage")'>
+      <img src='assets/imgs/icon_product.png' />
+    </button>
+    <button class='darkblue foot-button' (tap)='goToPage("HomePage")'>
+      <img src='assets/imgs/icon_home.png' />
+    </button>
+  </div>
+
 </ion-content>

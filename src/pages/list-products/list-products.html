@@ -23,8 +23,9 @@
     </div>
   </div>
   <!-- SEARCH BAR -->
-  <div class='search-bar'>
-    <ion-searchbar [(ngModel)]="searchTerm" [animated]="true" (ionInput)="searchProduct(searchTerm)"></ion-searchbar> </div>
+  <div *ngIf='!showAddModal'  class='search-bar'>
+    <ion-searchbar [(ngModel)]="searchTerm" [animated]="true" (ionInput)="searchProduct(searchTerm)"></ion-searchbar>
+  </div>
   <div class="container">
     <div class="list">
       <div class="list-item" *ngFor='let product of filterableProductList'>
@@ -50,7 +51,7 @@
     </div>
   </div>
   <!-- FOOTER BUTTONS -->
-  <div class='footer-buttons'>
+  <div *ngIf='!showAddModal' class='footer-buttons'>
     <button class='cerulean foot-button' (tap)='goToPage("ListShoppingPage")'>
       <img src='assets/imgs/icon_shopping_list.png' />
     </button>

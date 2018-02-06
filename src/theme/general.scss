@@ -1,0 +1,138 @@
+// @ import this general file in variables.scss
+@import "colors";
+
+// Colors
+.cerulean { background-color: $cerulean; }
+.darkcerulean { background-color: $darkcerulean; }
+.darkblue { background-color: $darkblue; }
+.darker-darkblue { background-color: $darker-darkblue; }
+.orange { background-color: $orange; }
+.darkorange { background-color: $darkorange; }
+.purple { background-color: $purple; }
+.darkpurple { background-color: $darkpurple; }
+.dark {background-color: $dark;}
+
+// Hidden vs visible
+.hidden {visibility: hidden;}
+.visible {visibility: visible;}
+
+// Containers
+.content {
+  background-color: transparent !important;
+  background-image: url('../assets/imgs/bg.jpg') !important;
+  background-size: cover;
+}
+.container {
+  background-color: #fff;
+  width: 70vw;
+  position: absolute;
+  right: 0;
+  height: 100vh;
+}
+
+
+
+// Footer buttons
+/* .footer-buttons {
+  height: 6.5rem;
+  background-color: #fff;
+  display: flex;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: 70vw;
+  z-index: 20;
+  .foot-button {
+    width: 50%;
+    margin: 1vw;
+    img {
+      height: 4rem;
+    }
+    &.darkblue {
+      img {transform: scale(0.85) !important}
+    }
+  }
+} */
+// Footer
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  .foot-button {
+    background-color: #b9b9b9;
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1rem;
+    &.purple {border-bottom: 4px solid $purple;}
+    &.darkblue { border-bottom: 4px solid $darkblue;}
+    img {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}
+
+// Modals
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+// Add to cart buttons
+.add-to-cart {
+  height: 4rem;
+  width: 50vw;
+  color: #fff;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 1rem auto 0;
+  .text {width: 100%}
+  .cart-icon {
+    width: 5rem;
+    height: 4rem;
+    display: flex;
+    //justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    img {
+      height: 3rem;
+      width: 3rem;
+    };
+  }
+  &.dark{
+    background-color: #7b7b7b;
+    .cart-icon {background-color: #3c3c3c}
+  }
+  &.purple{
+    background-color: $purple;
+    .cart-icon {background-color: $darkpurple}
+  }
+  &.orange{
+    background-color: $orange;
+    .cart-icon {background-color: $darkorange}
+  }
+}
+
+// Spinner
+.blk{
+  background: rgba(0,0,0,0.8);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top:0;
+  left: 0;
+}
+ion-spinner {
+  position: initial !important;
+  top: 40vh;
+  circle {stroke: $cerulean !important;}
+  svg {width: 60% !important; left: 20% !important}
+}

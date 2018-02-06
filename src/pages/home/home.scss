@@ -1,6 +1,6 @@
 page-home {
   .buttonContainer {
-    width: 40vw;
+    width: 45vw;
     position: absolute;
     right: 0;
   }
@@ -20,7 +20,7 @@ page-home {
   .buttonText{
     //transform: rotate(270deg);
     height: 100%;
-    width: 8vw;
+    width: 12vw;
     position: absolute;
     left: 0;
     margin: 0;
@@ -31,6 +31,7 @@ page-home {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     background-color: rgba(0,0,0,0.2);
+    text-align: center;
   }
   #product-add {
     background-color: $purple;
