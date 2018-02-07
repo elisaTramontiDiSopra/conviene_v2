@@ -1,20 +1,27 @@
 <ion-fab right bottom #fablist>
-  <button ion-fab color="light" (tap)='open = !open'><ion-icon name="arrow-dropleft"></ion-icon></button>
+  <button id='main-menu-icon'ion-fab (tap)='open = !open'>
+    <ion-icon name="menu"></ion-icon>
+  </button>
   <ion-fab-list side="top">
     <button ion-fab (tap)="gotoPage('OptionsPage')">
+      <p class="buttonText">Opzioni</p>
       <img src='assets/imgs/icon_options.png' />
     </button>
     <button ion-fab (tap)="gotoPage('ListShoppingPage')">
+      <p class="buttonText">Lista<br />spesa</p>
       <img src='assets/imgs/icon_shopping_list.png' />
     </button>
     <button ion-fab (tap)="gotoPage('ConvienePage')">
+      <p class="buttonText">Conviene ?</p>
       <img src='assets/imgs/icon_conviene.png' />
     </button>
     <button ion-fab (tap)="gotoPage('ListProductsPage')">
+      <p class="buttonText">Lista<br />prodotti</p>
       <img src='assets/imgs/icon_product.png' />
     </button>
     <button ion-fab (tap)="gotoPage('AddProductPage')">
-      <img class='purple'src='assets/imgs/icon_add_product.png' />
+      <p class="buttonText">Nuovo<br />prodotto</p>
+      <img class='purple' src='assets/imgs/icon_add_product.png' />
     </button>
   </ion-fab-list>
 </ion-fab>
