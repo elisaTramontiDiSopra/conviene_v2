@@ -1,9 +1,21 @@
-<ion-fab left bottom>
-  <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+<ion-fab right bottom #fablist>
+  <button ion-fab color="light" (tap)='open = !open'><ion-icon name="arrow-dropleft"></ion-icon></button>
   <ion-fab-list side="top">
-    <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-    <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-    <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
-    <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+    <button ion-fab (tap)="gotoPage('OptionsPage')">
+      <img src='assets/imgs/icon_options.png' />
+    </button>
+    <button ion-fab (tap)="gotoPage('ListShoppingPage')">
+      <img src='assets/imgs/icon_shopping_list.png' />
+    </button>
+    <button ion-fab (tap)="gotoPage('ConvienePage')">
+      <img src='assets/imgs/icon_conviene.png' />
+    </button>
+    <button ion-fab (tap)="gotoPage('ListProductsPage')">
+      <img src='assets/imgs/icon_product.png' />
+    </button>
+    <button ion-fab (tap)="gotoPage('AddProductPage')">
+      <img class='purple'src='assets/imgs/icon_add_product.png' />
+    </button>
   </ion-fab-list>
 </ion-fab>
+<div id='bg' [ngClass]='{"open": open}' (tap)='reduceMenu()'></div>

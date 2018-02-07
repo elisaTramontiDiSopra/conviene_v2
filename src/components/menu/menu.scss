@@ -1,3 +1,42 @@
 menu {
 
+  ion-fab-list {
+    height: 100vh;
+    margin: 0;
+    padding:0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    .fab-in-list {
+      width: 45vw;
+      height: 20vh;
+      border-radius: 0;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      img {
+        height: 15vh;
+        margin-left: 6vw
+      }
+      .buttonText {color: #fff}
+    }
+    button:nth-child(1) {background-color: $darkblue !important}
+    button:nth-child(2) {background-color: $cerulean !important}
+    button:nth-child(3) {background-color: $orange !important}
+    button:nth-child(4) {background-color: $darkpurple !important}
+    button:nth-child(5) {background-color: $purple !important}
+  }
+  #bg {
+    background-color: rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .3s;
+    &.open{
+      opacity:1
+    }
+  }
 }
