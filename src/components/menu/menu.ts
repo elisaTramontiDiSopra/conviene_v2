@@ -26,6 +26,9 @@ export class MenuComponent {
   gotoPage(page) {
     this.navCtrl.push(page);
   }
+  gotoAddProductPage() {
+    this.navCtrl.push('ProductPage', {section: 'editProductPage'});
+  }
 
 }
 

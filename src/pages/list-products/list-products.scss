@@ -1,17 +1,16 @@
 page-list-products {
   $padding-right: 4vw;
-
   ion-content {
     text-align: right;
     position: absolute;
     right: 0;
   }
-  .list {padding-top: 11vh}
+  .list {padding: 11vh 0 8vh 0}
   .list-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 4vw;
+    padding: 2vw 4vw;
     border-bottom: 1px solid #dedede;
     padding-bottom: 1vh;
     // Item Text
@@ -31,79 +30,14 @@ page-list-products {
     .icons {
       display: flex;
       .button {
-        width: 5vh;
-        height: 6vh;
+        width: 12vw;
+        height: 13vw;
         display: flex;
         justify-content: center;
         align-items: center;
         &.normal { background-color: $purple };
         &.sale { background-color: $orange };
         &.product { background-color: $cerulean };
-      }
-    }
-  }
-  // Modal
-  .modal {
-    font-size: 3vh;
-    font-weight: bolder;
-    .normal { background-color: $purple;}
-    .sale { background-color: $orange;}
-    .icon {
-      width: 24vh;
-      height: 24vh;
-      margin-bottom: 8vh;
-    }
-    p {
-      color: #fff;
-    }
-    .input-more-less-container {
-      display: flex;
-      font-size: 3vh;
-      font-weight: bolder;
-      .quantity {
-        width: 5vh;
-        height: 5vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #fff;
-      }
-      input {
-        height: 5vh;
-        width: 14vh;
-        text-align: center;
-        color: $text-color;
-      }
-    }
-    .text {
-      width: 70vw;
-      margin: 5vh;
-      text-align: center;
-    }
-    .button-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .button {
-        width: 12vh;
-        height: 12vh;
-        color: #fff;
-        margin: 0;
-        margin-right: 2vh;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        img {
-          width: 8vh;
-          height: 8vh;
-        }
-        span {
-          display: block;
-          text-transform: uppercase;
-          margin-top: 1vh;
-        }
       }
     }
   }
@@ -134,8 +68,8 @@ page-list-products {
     position: absolute;
     top: 0;
     right: 0;
-    width: 70vw;
-    z-index: 99;
+    width: 100vw;
+    z-index: 5;
   }
   ion-searchbar {
     padding: 4vw !important;
@@ -146,26 +80,4 @@ page-list-products {
       border-bottom: 2px solid $cerulean;
     }
   }
-  // Footer buttons
-  .footer-buttons {
-    height: 10vh;
-    background-color: #fff;
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 70vw;
-    z-index: 99;
-    .foot-button {
-      width: 50%;
-      margin: 1vw;
-      img {
-        height: 8vh;
-      }
-      &.darkblue {
-        img {transform: scale(0.85) !important}
-      }
-    }
-  }
-
 }

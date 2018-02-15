@@ -10,22 +10,23 @@ import { FIREBASE_CONFIG } from './firebase.credentials';
 
 // VIEWS
 import { MyApp } from './app.component';
-//import { HomePage } from '../pages/home/home';
-//import { AddProductPage } from '../pages/add-product/add-product';
+
+import { ComponentsModule } from '../components/components.module'
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFirestoreModule.enablePersistence()
+    AngularFirestoreModule.enablePersistence(),
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
     StatusBar,

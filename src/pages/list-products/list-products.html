@@ -2,38 +2,45 @@
 <ion-content>
   <!-- ADD MODAL -->
   <div *ngIf='showAddModal===true' class="modal" [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}">
-    <div class='icon' [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}">
-      <img src='assets/imgs/icon_shopping_list.png' />
+    <div class='modal-inner'>
+      <div class='modal-top' [ngClass]="{'purple': adding === 'normal', 'orange': adding==='sale'}">
+        <img src='assets/imgs/icon_shopping_list.png' />
+      </div>
+      <div class='modal-inner-container'>
+        <div class="input-more-less-container">
+          <div class='quantity' [ngClass]="{'darkpurple': adding === 'normal', 'darkorange': adding==='sale'}" (tap)='quantity = quantity-1'>-</div>
+          <input [(ngModel)]="quantity">
+          <div class='quantity' [ngClass]="{'darkpurple': adding === 'normal', 'darkorange': adding==='sale'}" (tap)='quantity = quantity+1'>+</div>
+        </div>
+        <p>Stai aggiungendo {{quantity}} di {{productForModal.name}} alla lista {{productForModal.shop}} </p>
+        <div class='button-section'>
+          <button class="button" [ngClass]="{'purple': adding === 'normal', 'orange': adding==='sale'}" (tap)='addProductToList(productForModal)'>
+            <img src='assets/imgs/icon_ok.png' />
+          </button>
+          <button class="button dark" (tap)='this.quantity = 1; showAddModal = false;'>
+            <img src='assets/imgs/icon_x.png' />
+          </button>
+        </div>
+      </div>
     </div>
-    <!-- QUANTITY -->
-    <p>Quantità</p>
-    <div class="input-more-less-container">
-      <div class='quantity' [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}" (tap)='quantity = quantity-1'>-</div>
-      <input [(ngModel)]="quantity">
-      <div class='quantity' [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}" (tap)='quantity = quantity+1'>+</div>
-    </div>
-    <p class="text">Stai aggiungendo {{quantity}} di {{productForModal.name}} alla lista {{productForModal.shop}} </p>
-    <div class='button-section'>
-      <button class="button modal-add" (tap)='addProductToList(productForModal)'>
-        <img src='assets/imgs/icon_save.png' />
-      </button>
-      <button class="button modal-delete" (tap)='this.quantity = 1; showAddModal = false;'>
-        <img src='assets/imgs/icon_delete.png' />
-      </button>
-    </div>
+  </div>
+  <!-- MENU -->
+  <div *ngIf='!showAddModal' class='menu-button menu-button-dark'>
+    <menu></menu>
   </div>
   <!-- SEARCH BAR -->
-  <div *ngIf='!showAddModal'  class='search-bar'>
+  <div *ngIf='!showAddModal' class='search-bar'>
     <ion-searchbar [(ngModel)]="searchTerm" [animated]="true" (ionInput)="searchProduct(searchTerm)"></ion-searchbar>
   </div>
+
   <div class="container">
     <div class="list">
       <div class="list-item" *ngFor='let product of filterableProductList'>
         <div class="text">
           <div class="product">{{product.name}}</div>
           <div class="price">
-            <span class="normal">{{product.price}} €</span> vs
-            <span class="sale">{{product.priceSale}} €</span>
+            <span class="normal">{{product.price}}€</span> vs
+            <span class="sale">{{product.priceSale}}€</span>
           </div>
         </div>
         <div class="icons">
@@ -49,15 +56,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- FOOTER BUTTONS -->
-  <div *ngIf='!showAddModal' class='footer-buttons'>
-    <button class='cerulean foot-button' (tap)='goToPage("ListShoppingPage")'>
-      <img src='assets/imgs/icon_shopping_list.png' />
-    </button>
-    <button class='darkblue foot-button' (tap)='goToPage("HomePage")'>
-      <img src='assets/imgs/icon_home.png' />
-    </button>
   </div>
 
 </ion-content>

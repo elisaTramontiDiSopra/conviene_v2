@@ -29,7 +29,7 @@ export class ListProductsPage {
   /* SEARCH BAR*/ searchTerm; filterableProductList = []; completeProductList = []
 
   constructor( public navCtrl: NavController, public navParams: NavParams,  private afs: AngularFirestore ) {
-    this.productCollection = this.afs.collection("products");
+    this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
     this.productsObservableList = this.productCollection.valueChanges()
   }
 
@@ -85,7 +85,7 @@ export class ListProductsPage {
               name: product.name,
               quantity: this.quantity,
               price: product.price,
-              sale: false,
+              sale: true,
               shop: product.shop,
               id: product.id
             }

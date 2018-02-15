@@ -39,6 +39,7 @@ export class ListShoppingPage implements OnDestroy {
   getShoppingLists() {
     this.listsSubscription = this.shoppingListsCollection.valueChanges().subscribe((res) => {
       res.forEach(shop => {
+        console.log(shop);
         let key = Object.keys(shop.products);
         let products = key.map(productKey => shop.products[productKey]);
         this.shoppingLists.push({

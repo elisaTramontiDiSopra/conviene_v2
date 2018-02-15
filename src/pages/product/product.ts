@@ -18,13 +18,14 @@ export class ProductPage {
   productsObservableList: Observable<Product[]>;
   productDocument: AngularFirestoreDocument<Product>;
   productObservableDocument: Observable<Product>;
+  shoppingListsCollection: AngularFirestoreCollection<Product>;
 
   //per visualizzare i --.-- prima di mettere il prezzo
   priceClicked = false;   priceSaleClicked = false;
 
   /* PARAMETERS */ section; product = {name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo'} as Product;
        /* ALERT */ showAlertForNameAndPrice = false;
-
+       /* MODALS*/ showAddModal = false; adding; productForModal;  quantity = 1;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore) {
@@ -32,6 +33,8 @@ export class ProductPage {
     if (this.navParams.get('section') === undefined) {this.section = 'productPage'} else {this.section = this.navParams.get('section')}
     // se product è specificato product = prodotto specificato altrimenti resta il prodotto vuoto messo sopra in variabile
     if (this.navParams.get('product') !== undefined) {this.product = this.navParams.get('product')}
+    this.productCollection = this.afs.collection("products");
+    this.productsObservableList = this.productCollection.valueChanges()
   }
 
   ngOnInit() {
@@ -54,8 +57,50 @@ export class ProductPage {
     console.log(product);
   }
 
+  addProductToList(product) {
+    // add document with the name of the shop and products as property with the id as name property (to avoid copies)
+    this.shoppingListsCollection = this.afs.collection("lists");
+    if (this.adding === "normal") {
+      //aggiungo il prodotto alla collection con il nome del negozio
+      this.shoppingListsCollection.doc(product.shop).set({
+        shopName: product.shop,
+        products: {
+          [product.id]: {
+            name: product.name,
+            quantity: this.quantity,
+            price: product.price,
+            sale: false,
+            shop: product.shop,
+            id: product.id
+          }
+        }},{merge: true});
+      } else if (this.adding === "sale") {
+        //aggiungo il prodotto alla collection con il nome del negozio
+        this.shoppingListsCollection.doc(product.shop).set({
+          shopName: product.shop,
+          products: {
+            [product.id]: {
+              name: product.name,
+              quantity: this.quantity,
+              price: product.price,
+              sale: true,
+              shop: product.shop,
+              id: product.id
+            }
+          }},{merge: true});
+      }
+    this.showAddModal = false;
+  }
+
+  showModal(type, product) {
+    this.showAddModal = true;
+    this.adding = type;
+    console.log(product.name);
+    this.productForModal = product;
+  }
+
   //BUTTONS FUNCTIONS
-   save() {
+  save() {
     if (this.product.name !== '' && (this.product.price !== null || this.product.priceSale !== null)) {
       // creo un id (anche come proprietà), lo salvo come nome del documento e poi metto nel documento
       // tutte le proprietà del prodotto, id compreso

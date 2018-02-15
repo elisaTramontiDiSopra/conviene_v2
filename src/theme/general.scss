@@ -33,48 +33,39 @@
   flex-direction: column;
 }
 
-
-
-// Footer buttons
-/* .footer-buttons {
-  height: 6.5rem;
-  background-color: #fff;
-  display: flex;
-  position: relative;
-  bottom: 0;
-  right: 0;
-  width: 70vw;
-  z-index: 20;
-  .foot-button {
-    width: 50%;
-    margin: 1vw;
-    img {
-      height: 4rem;
-    }
-    &.darkblue {
-      img {transform: scale(0.85) !important}
-    }
-  }
-} */
-// Footer
-.footer {
+// Menu button
+.menu-button {
+  width: 6rem;
+  height: 6rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
-  .foot-button {
-    background-color: #b9b9b9;
-    width: 5rem;
-    height: 5rem;
-    margin-right: 1rem;
-    &.purple {border-bottom: 4px solid $purple;}
-    &.darkblue { border-bottom: 4px solid $darkblue;}
-    img {
-      width: 3rem;
-      height: 3rem;
-    }
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: $dark;
+  z-index: 99;
+  menu {
+    position: relative;
+    left: 10px;
+    bottom: 10px;
   }
 }
+.menu-button-dark {
+  padding: 5px 0 5px 20px;
+  margin-right: 25px;
+  background-color: transparent;
+    ion-fab {
+      //background-color: $dark;
+      background-color: $darkblue;
+      position: relative;
+      top: 10px;
+    }
+}
+.fab-md {border-radius: 0 !important}
+
+
+
 
 // Modals
 .modal {
@@ -85,6 +76,57 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: $text-color;
+  .modal-inner {
+    background-color: #fff;
+    width: 70vw;
+    height: 55vh;
+    .modal-top {
+      height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {width: 8rem; height: 8rem}
+    }
+    .modal-inner-container{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      font-size: 3vh;
+      padding: 4vw;
+      text-align: center;
+      color: $text-color;
+      height: 40vh;
+      .input-more-less-container {
+        display: flex;
+        margin-top: 3vh;
+        .quantity {
+          width: 5vh;
+          height: 5vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: #fff;
+        }
+        input {
+          height: 5vh;
+          width: 14vh;
+          text-align: center;
+          color: $text-color;
+        }
+      }
+      .button-section {
+        margin-bottom: 3vh;
+        .button {
+          width: 20vw;
+          height: 6vh;
+          margin: 0 1vw;
+          img {width: 2rem; height: 2rem}
+        }
+      }
+    }
+  }
 }
 
 // Add to cart buttons

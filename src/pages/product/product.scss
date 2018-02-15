@@ -87,41 +87,42 @@ page-product {
 
   .button-section {
     width: 100vw;
-    height: 18rem;
+    //height: 18rem;
+    height: 12rem;
     flex: 0 0 auto;
     .col, .row { padding: 0; }
     .col:first-child { width: 75vw !important;  }
     .col:last-child { width: 25vw;  }
     .button {
       color: #fff;
-      width: 37.5vw;
-      height: 9rem;
+      width: 33.33vw;
+      //height: 9rem;
+      height: 12rem;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: space-around;
       align-items: center;
       text-transform: uppercase;
-      span {
-        height: 100%;
-        width: 3rem;
-        writing-mode: vertical-rl;
-        transform: rotate(180deg);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-      }
       img {
         width: 5rem;
         height: 5rem;
       }
       &:nth-child(odd) {
         span { left: 0;   }
-        img { margin-left: 3rem; }
+        //img { margin-left: 3rem; }
       }
       &:nth-child(even) {
         span {right: 0; }
-        img { margin-right: 3rem; }
+        //img { margin-right: 3rem; }
       }
+    }
+    .bottom-buttons{
+      span {
+        text-transform: uppercase;
+        margin-top: 10px;
+        color: white;
+      }
+      menu {padding-left: 20px}
     }
     .options {
       width: 25vw;
@@ -140,6 +141,10 @@ page-product {
         width: 5rem;
         height: 5rem;
       }
+    }
+    .menu {
+      width: 33%;
+      text-align: center
     }
   }
 

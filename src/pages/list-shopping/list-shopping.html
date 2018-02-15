@@ -19,35 +19,25 @@
     </div>
   </div>
 
+  <!-- MENU -->
+  <div *ngIf='!showAddModal' class='menu-button menu-button-dark'>
+    <menu></menu>
+  </div>
+
   <ul>
     <li *ngFor='let shop of shoppingLists' class='list'>
       <p class='shop-name'>{{shop.shopName}}</p>
-      <div *ngFor='let product of shop.products, let i = index' class='product' [ngClass]='{"semitrasp" : this.semitransparent[shop.shopName][i]}'>
-        <span class='product-name' [ngClass]='{"sale" : product.sale}'>{{product.name}}</span>
-        <span *ngIf='product.sale === true' class='product-sale'>
-          <img src='assets/imgs/icon_conviene_mini.png' /> </span>
-        <span class='product-quantity' [ngClass]='{"sale" : product.sale}'>x{{product.quantity}}</span>
-        <span class='product-dots'>.....................................................................</span>
-        <span class='product-close' (tap)='this.semitransparent[shop.shopName][i] = !this.semitransparent[shop.shopName][i]'>X</span>
+      <div class='product-list'>
+        <div class='product' *ngFor='let product of shop.products, let i = index' [ngClass]='{"semitrasp" : this.semitransparent[shop.shopName][i]}' (tap)='this.semitransparent[shop.shopName][i] = !this.semitransparent[shop.shopName][i]'>
+          <div class='top'><span class='name' [ngClass]='{"sale" : product.sale === true}'>{{product.name}}</span><span class='quantity'>x{{product.quantity}}</span></div>
+          <div class='bottom' [ngClass]='{"sale" : product.sale === true}'>{{product.price}} € <img *ngIf='product.sale === true' src='assets/imgs/icon_conviene_mini.png' /></div>
+        </div>
       </div>
-      <div class='list-close'>
-        Spesa Finita!
-        <span class='close' (tap)='showDeleteModalConfirmation(shop.shopName)'>X</span>
+      <div class='close' (tap)='showDeleteModalConfirmation(shop.shopName)'>
+        <img src='assets/imgs/icon_done_cart.png' />
       </div>
     </li>
   </ul>
 
-  <!-- FOOTER BUTTONS -->
-  <div *ngIf='!showDeleteModal' class='footer-buttons'>
-    <button class='orange foot-button' (tap)='goToPage("ConvienePage")'>
-      <img src='assets/imgs/icon_conviene.png' />
-    </button>
-    <button class='purple foot-button' (tap)='goToPage("ListProductsPage")'>
-      <img src='assets/imgs/icon_product.png' />
-    </button>
-    <button class='darkblue foot-button' (tap)='goToPage("HomePage")'>
-      <img src='assets/imgs/icon_home.png' />
-    </button>
-  </div>
 
 </ion-content>

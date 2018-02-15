@@ -1,11 +1,12 @@
 menu {
   ion-fab {
-    width: 45vw;
-    height: 20vh;
-    background-color: #cc0013;
-    position: absolute;
-    right: 0 !important;
-    bottom: 0 !important;
+    //width: 45vw;
+    //height: 20vh;
+    //background-color: #cc0013;
+    //position: absolute;
+    //right: 0 !important;
+    //bottom: 0 !important;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,6 +41,19 @@ menu {
       .buttonText {
         color: #fff;
         line-height: 1.3;
+        height: 100%;
+        width: 12vw;
+        position: absolute;
+        left: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-transform: uppercase;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        background-color: rgba(0,0,0,0.2);
+        text-align: center;
       }
     }
     button:nth-child(1) {
@@ -59,7 +73,7 @@ menu {
     }
   }
   #bg {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     width: 0;
     height: 0;
     position: fixed;
@@ -67,10 +81,12 @@ menu {
     left: 0;
     opacity: 0;
     transition: opacity .3s;
+    z-index: 1;
     &.open {
       opacity: 1;
       width: 100vw;
       height: 100vh;
+      z-index: 99;
     }
   }
 }
