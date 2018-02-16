@@ -1,11 +1,14 @@
 page-list-products {
   $padding-right: 4vw;
+  .scroll-content {
+    background-color: #fff;
+  }
   ion-content {
     text-align: right;
     position: absolute;
     right: 0;
   }
-  .list {padding: 11vh 0 8vh 0}
+  .list {padding: 11vh 0 14vh 0}
   .list-item {
     display: flex;
     justify-content: space-between;
