@@ -24,22 +24,31 @@ page-conviene {
       .input-message {
         border-bottom: 2px solid $orange;
         text-transform: uppercase;
-        min-height: 3rem;
+        min-height: 4rem;
+        font-size: 2rem;
         width: 80%;
         margin: auto;
         background-color: rgba(255, 134, 7, 0.3);
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-top: 2rem;
       }
       input {
-        width: 80%;
+        @extend .input-message ;
         border: none;
         border-bottom: 2px solid $orange;
-        min-height: 3rem;
+        padding: 0 0 0 10px;
+       /*  width: 80%;
+        border: none;
+        border-bottom: 2px solid $orange;
+        min-height: 4rem;
+        font-size: 2rem;
         margin: 0;
-        padding: 0;
-        margin-bottom: 2rem;
+        margin-top: 2rem;
+        padding: 0 0 0 10px; */
+        //margin-bottom: 2rem;
+        //font-size: 1.8rem;
       }
       .name {
         background: url("../assets/imgs/icon_product_yellow.png");
@@ -61,10 +70,11 @@ page-conviene {
         overflow-y: scroll;
         border: 1px solid $orange;
         position: absolute;
-        top: 10.5rem;
+        top: 11rem;
         left: 10%;
         .product {
-          height: 3rem;
+          height: 4rem;
+          font-size: 2rem;
           width: 100%;
           background-color: $orange;
           color: #fff;
@@ -103,7 +113,7 @@ page-conviene {
     .text-container {
       color: #fff;
     }
-/*     .foot-button {
+  /*     .foot-button {
       border: 1px solid #fff !important;
       background-color: $orange !important;
     } */
@@ -117,6 +127,89 @@ page-conviene {
     .foot-button {
       border: 1px solid #fff !important;
       background-color: $dark !important;
+    }
+  }
+  .updateModal {
+    .modal-inner{
+      width: 80vw;
+      height: 70vh;
+      min-height: 50rem;
+      .modal-inner-container {
+        height: 62vh;
+        min-height: 35rem;
+        img {
+          width: 3rem !important;
+          height: 3rem !important;
+        }
+      }
+    }
+    .input-more-less-container {
+      display: flex;
+      flex-direction: column;
+      min-height: 17rem;
+      font-size: 2rem;
+      margin-top: 1rem !important;
+      input {
+        width: 60vw !important;
+        text-align: left !important;
+        border: none;
+        //border-bottom: 2px solid $purple;
+        min-height: 3rem;
+        margin: 0;
+        padding: 0 0 0 10px;
+        margin-bottom: 2rem;
+      }
+      &.normal {
+        input {
+          border-bottom: 2px solid $purple;
+        }
+        .name {
+          background: url("../assets/imgs/icon_product_purple.png");
+          background-size: contain;
+          background-position: right center;
+          background-repeat: no-repeat;
+        }
+        .price {
+          background: url("../assets/imgs/icon_money_purple.png");
+          background-size: contain;
+          background-position: right center;
+          background-repeat: no-repeat;
+        }
+        .shop {
+          background: url("../assets/imgs/icon_shop_purple.png");
+          background-size: contain;
+          background-position: right center;
+          background-repeat: no-repeat;
+        }
+      }
+      &.sale {
+        input {
+          border-bottom: 2px solid $orange;
+        }
+        .name {
+          background: url("../assets/imgs/icon_product_yellow.png");
+          background-size: contain;
+          background-position: right center;
+          background-repeat: no-repeat;
+        }
+        .price {
+          background: url("../assets/imgs/icon_money_yellow.png");
+          background-size: contain;
+          background-position: right center;
+          background-repeat: no-repeat;
+        }
+        .shop {
+          background: url("../assets/imgs/icon_shop_yellow.png");
+          background-size: contain;
+          background-position: right center;
+          background-repeat: no-repeat;
+        }
+      }
+      ion-list{
+        display: flex;
+        ion-label {margin: 13px 0px 13px 0 }
+        ion-radio {margin: 9px 0px 9px 0 }
+      }
     }
   }
 }

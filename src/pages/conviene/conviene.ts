@@ -18,7 +18,7 @@ export class ConvienePage {
        /* BG COLORS */ white=true; yellow=false; dark=false;
   /* PRODUCT SELECT */ showProductSelect = false; showPrice = false; product; showInputPrice=false; showInputName=false;
        /* SEARCH BAR*/ filterableProductList = []; completeProductList = []
-        /* MESSAGES */ convieneMessage; messages = ["Butta nel carrello che è un'occasione!", "In offerta lo trovi a meno, però è comunque meglio del prezzo normale", 'Lascia stare, lo trovi a meno!']
+        /* MESSAGES */ convieneMessage; conviene; messages = ["Butta nel carrello che è un'occasione!", "In offerta lo trovi a meno, però è comunque meglio del prezzo normale", 'Lascia stare che lo trovi a meno!']
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public fireService: FireServiceProvider) {
     this.productCollection = this.afs.collection("products");
@@ -42,7 +42,6 @@ export class ConvienePage {
       }
     });
   }
-
   checkPrice(price) {
     setTimeout(() => {
       //price = Number(price);
@@ -53,17 +52,20 @@ export class ConvienePage {
       //se è più alto del prezzo normale --- LASCIA STARE
       if (price < this.product.priceSale) {
         console.log('< this.product.priceSale');
+        this.conviene = 'Si';  /* una variabile da passare alla funzione nel service per impostare subito il modal */
         this.convieneMessage = this.messages[0];
         this.white=false;
         this.yellow=true;
         this.dark=false;
       } else if (price > this.product.priceSale && price < this.product.price) {
         console.log('< this.product.priceSale 2');
+        this.conviene = 'Forse';
         this.convieneMessage = this.messages[1];
         this.white=true;
         this.yellow=false;
         this.dark=false;
       } else if (price > this.product.price) {
+        this.conviene = 'No';
         console.log('> this.product.price');
         this.convieneMessage = this.messages[2];
         this.white=false;
@@ -72,18 +74,22 @@ export class ConvienePage {
       }
     }, 700);
   }
-
   selectProduct(product) {
     this.product = product;
     this.searchedProduct.name = product.name;
-    //this.searchedProduct.price = product.price;
     this.showProductSelect = false;
     this.showPrice = true;
   }
 
+
+  // UPDATE MODAL AND PRODUCT
+
+
+
+
+
   goToPage(page){
     this.navCtrl.push(page);
-    console.log(page);
   }
 
 

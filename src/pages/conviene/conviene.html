@@ -1,15 +1,116 @@
 <ion-content>
+  <!-- UPDATE PRODUCT MODAL -->
+  <div *ngIf='fireService.showUpdateProductModal===true' class="modal updateModal" [ngClass]="{'normal': fireService.updateAdding === 'normal', 'sale': fireService.updateAdding==='sale'}">
+    <div class='modal-inner'>
+      <div class='modal-top' [ngClass]="{'purple': fireService.updateAdding === 'normal', 'orange': fireService.updateAdding==='sale'}">
+        <img src='assets/imgs/icon_product_update.png' />
+      </div>
+      <div class='modal-inner-container' >
+        <p>Prima di aggiungerlo vuoi aggiornare <strong>{{this.fireService.productForUpdateModal.name}}</strong>?</p>
+        <div class="input-more-less-container" [ngClass]="{'normal': fireService.updateAdding === 'normal', 'sale': fireService.updateAdding==='sale'}"  >
+          <input class="name" [(ngModel)]="fireService.productForUpdateModal.name" onClick="this.setSelectionRange(0, this.value.length)" [ngClass]="{'normal': fireService.updateAdding === 'normal', 'sale': fireService.updateAdding==='sale'}">
+          <input *ngIf='fireService.updateAdding === "normal"' class="price" [(ngModel)]="fireService.productForUpdateModal.price" onClick="this.setSelectionRange(0, this.value.length)">
+          <input *ngIf='fireService.updateAdding === "sale"' class="price" [(ngModel)]="fireService.productForUpdateModal.priceSale" onClick="this.setSelectionRange(0, this.value.length)">
+          <input *ngIf='fireService.updateAdding === "normal"' class="shop" [(ngModel)]="fireService.productForUpdateModal.shop" onClick="this.setSelectionRange(0, this.value.length)">
+          <input *ngIf='fireService.updateAdding === "sale"' class="shop" [(ngModel)]="fireService.productForUpdateModal.shopSale" onClick="this.setSelectionRange(0, this.value.length)">
+          <ion-list *ngIf='fireService.updateAdding === "normal"' radio-group [(ngModel)]="fireService.updateAdding">
+            <ion-item class="custom-radio">
+              <ion-label>Normale</ion-label>
+              <ion-radio item-right color="primary" value='normal'></ion-radio>
+            </ion-item>
+            <ion-item class="custom-radio">
+              <ion-label>Offerta</ion-label>
+              <ion-radio item-right color="primary" value="sale"></ion-radio>
+            </ion-item>
+          </ion-list>
+          <ion-list *ngIf='fireService.updateAdding === "sale"' radio-group [(ngModel)]="fireService.updateAdding">
+            <ion-item class="custom-radio">
+              <ion-label>Normale</ion-label>
+              <ion-radio item-right color="secondary" value='normal'></ion-radio>
+            </ion-item>
+            <ion-item class="custom-radio">
+              <ion-label>Offerta</ion-label>
+              <ion-radio item-right color="secondary" value="sale"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </div>
+        <!-- <div class="input-more-less-container" [ngClass]="{'normal': fireService.updateAdding === 'normal', 'sale': fireService.updateAdding==='sale'}" >
+          <input class="name" [(ngModel)]="fireService.productForUpdateModal.name" onClick="this.setSelectionRange(0, this.value.length)">
+          <input class="price" [(ngModel)]="fireService.productForUpdateModal.price" onClick="this.setSelectionRange(0, this.value.length)">
+          <input class="shop" [(ngModel)]="fireService.productForUpdateModal.shop" onClick="this.setSelectionRange(0, this.value.length)">
+          <ion-list *ngIf='fireService.updateAdding === "sale"' radio-group [(ngModel)]="fireService.updateAdding">
+            <ion-item class="custom-radio">
+              <ion-label>Normale</ion-label>
+              <ion-radio item-right color="secondary" value='normal'></ion-radio>
+            </ion-item>
+            <ion-item class="custom-radio">
+              <ion-label>Offerta</ion-label>
+              <ion-radio item-right color="secondary" value="sale"></ion-radio>
+            </ion-item>
+          </ion-list>
+          <ion-list *ngIf='fireService.updateAdding === "normal"' radio-group [(ngModel)]="fireService.updateAdding">
+            <ion-item class="custom-radio">
+              <ion-label>Normale</ion-label>
+              <ion-radio item-right color="primary" value='normal'></ion-radio>
+            </ion-item>
+            <ion-item class="custom-radio">
+              <ion-label>Offerta</ion-label>
+              <ion-radio item-right color="primary" value="sale"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </div> -->
+        <div class='button-section'>
+          <button class="button" [ngClass]="{'purple': this.fireService.updateAdding === 'normal', 'orange': this.fireService.updateAdding==='sale'}"
+            (tap)='fireService.saveUpdatedProduct()'>
+            <img src='assets/imgs/icon_update.png' />
+          </button>
+          <button class="button" [ngClass]="{'purple': fireService.updateAdding === 'normal', 'orange': this.fireService.updateAdding==='sale'}"
+            (tap)='fireService.addProductToListWithoutUpdating(fireService.productForUpdateModal)'>
+            <img src='assets/imgs/icon_add_to_cart_modal.png' />
+          </button>
+          <button class="button dark" (tap)='fireService.resetVariables()'>
+            <img src='assets/imgs/icon_x.png' />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ADD PRODUCT MODAL -->
+  <div *ngIf='fireService.showAddProductModal === true' class="modal" [ngClass]="{'normal': fireService.adding === 'normal', 'sale': fireService.adding==='sale'}">
+    <div class='modal-inner'>
+      <div class='modal-top' [ngClass]="{'purple': fireService.adding === 'normal', 'orange': fireService.adding==='sale'}">
+        <img src='assets/imgs/icon_shopping_list.png' />
+      </div>
+      <div class='modal-inner-container'>
+        <div class="input-more-less-container">
+          <div class='quantity' [ngClass]="{'darkpurple': fireService.adding === 'normal', 'darkorange': fireService.adding==='sale'}" (tap)='fireService.quantity = fireService.quantity-1'>-</div>
+          <input [(ngModel)]="fireService.quantity">
+          <div class='quantity' [ngClass]="{'darkpurple': fireService.adding === 'normal', 'darkorange': fireService.adding==='sale'}" (tap)='fireService.quantity = fireService.quantity+1'>+</div>
+        </div>
+        <p *ngIf="fireService.adding === 'normal'">Stai aggiungendo {{fireService.quantity}} {{fireService.productForAddModal.name}} alla lista {{fireService.productForAddModal.shop}} </p>
+        <p *ngIf="fireService.adding === 'sale'">Stai aggiungendo {{fireService.quantity}} {{fireService.productForAddModal.name}} alla lista {{fireService.productForAddModal.shopSale}} </p>
+        <div class='button-section'>
+          <button class="button" [ngClass]="{'purple': fireService.adding === 'normal', 'orange': fireService.adding==='sale'}"
+            (tap)='fireService.addProductToList()'>
+            <img src='assets/imgs/icon_ok.png' />
+          </button>
+          <button class="button dark" (tap)='fireService.resetVariables()'>
+            <img src='assets/imgs/icon_x.png' />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- MENU -->
-  <div class='menu-button menu-button-dark'>
+  <div *ngIf='fireService.showAddProductModal !== true && fireService.showUpdateProductModal !== true' class='menu-button menu-button-dark'>
     <menu></menu>
   </div>
 
   <div class="container">
-
     <!-- WHITE -->
     <div class="internal" *ngIf='white===true'>
       <img src='assets/imgs/icon_conviene_yellow.png' />
-
       <div class='input-text-container'>
         <div class="title">Che prodotto vuoi confrontare?</div>
         <div *ngIf='!showInputName' (tap)='showInputName = true' class="input-message">Nome prodotto</div>
@@ -22,11 +123,10 @@
         <input [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}" class="price" type="number" [(ngModel)]="searchedProduct.price"
           (keyup)="checkPrice(searchedProduct.price)">
       </div>
-
       <div class="text-container" [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}">
         {{convieneMessage}}
         <!-- ADD TO CART -->
-        <div class="add-to-cart dark" (tap)='showUpdateProductModal()'>
+        <div class="add-to-cart dark" (tap)='fireService.updateProductModal(product, this.conviene)'>
           <div class='cart-icon'>
             <img src='assets/imgs/icon_add_to_cart.png' />
           </div>
@@ -34,7 +134,6 @@
         </div>
       </div>
     </div>
-
     <!-- YELLOW -->
     <div class="internal yellow" *ngIf='yellow===true'>
       <img src='assets/imgs/icon_conviene_outline.png' />
@@ -50,12 +149,10 @@
         <input [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}" class="price" type="number" [(ngModel)]="searchedProduct.price"
           (keyup)="checkPrice(searchedProduct.price)">
       </div>
-
       <div class="text-container" [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}">
         {{convieneMessage}}
         <!-- ADD TO CART -->
-        <!-- <div class="add-to-cart dark" (tap)='showUpdateProductModal()'> -->
-        <div class="add-to-cart dark" (tap)='this.fireService.test()'>
+        <div class="add-to-cart light" (tap)='this.fireService.updateProductModal(product, this.conviene)'>
           <div class='cart-icon'>
             <img src='assets/imgs/icon_add_to_cart.png' />
           </div>
@@ -63,7 +160,6 @@
         </div>
       </div>
     </div>
-
     <!-- DARK -->
     <div class="internal dark" *ngIf='dark===true'>
       <img src='assets/imgs/icon_conviene_yellow.png' />
@@ -84,7 +180,6 @@
         {{convieneMessage}}
       </div>
     </div>
-
   </div>
 
 </ion-content>
