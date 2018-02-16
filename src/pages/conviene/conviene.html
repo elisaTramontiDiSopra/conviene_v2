@@ -54,7 +54,8 @@
       <div class="text-container" [ngClass]="{'visible': showInputPrice, 'hidden': !showInputPrice}">
         {{convieneMessage}}
         <!-- ADD TO CART -->
-        <div class="add-to-cart dark" (tap)='showUpdateProductModal()'>
+        <!-- <div class="add-to-cart dark" (tap)='showUpdateProductModal()'> -->
+        <div class="add-to-cart dark" (tap)='this.fireService.test()'>
           <div class='cart-icon'>
             <img src='assets/imgs/icon_add_to_cart.png' />
           </div>

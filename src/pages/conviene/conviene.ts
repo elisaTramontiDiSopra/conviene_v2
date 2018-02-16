@@ -1,3 +1,4 @@
+import { FireServiceProvider } from './../../providers/fire-service/fire-service';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
@@ -19,7 +20,7 @@ export class ConvienePage {
        /* SEARCH BAR*/ filterableProductList = []; completeProductList = []
         /* MESSAGES */ convieneMessage; messages = ["Butta nel carrello che è un'occasione!", "In offerta lo trovi a meno, però è comunque meglio del prezzo normale", 'Lascia stare, lo trovi a meno!']
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public fireService: FireServiceProvider) {
     this.productCollection = this.afs.collection("products");
     this.productsObservableList = this.productCollection.valueChanges()
   }
