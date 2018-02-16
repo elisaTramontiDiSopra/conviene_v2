@@ -1,44 +1,22 @@
 page-conviene {
-  .vertical-bar {
-    color: #fff;
-    height: 100%;
-    width: 8vw;
-    position: absolute;
-    left: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-  }
-  .container {
-    //width: 100vw;
-  }
-
   .internal {
-    width: 92vw;
     height: 100vh;
-    margin-left: 8vw;
-    padding: 0 4vw;
+    padding: 4vw;
     position: relative;
     text-transform: uppercase;
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     img {
       height: 25vh;
       width: 25vh;
       margin: 0 auto;
-      //transform: scale(0.5);
     }
     .title {
-      font-size: 1.5rem;
+      font-size: 2rem;
       font-weight: 500;
-      //color: $orange;
-      margin-bottom: 1.5rem;
+      margin-bottom: 3rem;
     }
     .input-text-container {
       position: relative;
@@ -101,6 +79,7 @@ page-conviene {
       font-weight: 500;
       font-size: 2rem;
       min-height: 10rem;
+      margin-bottom: 6rem;
     }
   }
   .yellow {
@@ -124,10 +103,10 @@ page-conviene {
     .text-container {
       color: #fff;
     }
-    .foot-button {
+/*     .foot-button {
       border: 1px solid #fff !important;
       background-color: $orange !important;
-    }
+    } */
   }
   .dark {
     background-color: $dark;

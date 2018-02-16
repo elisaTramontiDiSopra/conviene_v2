@@ -56,7 +56,6 @@
   margin-right: 25px;
   background-color: transparent;
     ion-fab {
-      //background-color: $dark;
       background-color: $darkblue;
       position: relative;
       top: 10px;
@@ -131,25 +130,25 @@
 
 // Add to cart buttons
 .add-to-cart {
-  height: 4rem;
-  width: 50vw;
+  height: 6rem;
+  width: 80vw;
   color: #fff;
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
-  margin: 1rem auto 0;
+  font-size: 2rem;
+  margin: 2rem auto 0;
   .text {width: 100%}
   .cart-icon {
-    width: 5rem;
-    height: 4rem;
+    width: 9rem;
+    height: 6rem;
     display: flex;
     //justify-content: center;
     align-items: center;
     margin-right: 15px;
     img {
-      height: 3rem;
-      width: 3rem;
+      height: 5rem;
+      width: 5rem;
     };
   }
   &.dark{
