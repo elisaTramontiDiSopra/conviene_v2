@@ -18,7 +18,6 @@ page-home {
     }
   }
   .buttonText{
-    //transform: rotate(270deg);
     height: 100%;
     width: 12vw;
     position: absolute;
@@ -33,19 +32,33 @@ page-home {
     background-color: rgba(0,0,0,0.2);
     text-align: center;
   }
-  #product-add {
-    background-color: $purple;
-  }
-  #product-list {
-    background-color: $darkpurple;
-  }
-  #conviene {
-    background-color: $orange;
-  }
-  #cart-add {
-    background-color: $cerulean;
-  }
-  #shopping-list {
-    background-color: $darkblue;
+  .modal-inner-container {
+    display: flex;
+    flex-direction: column;
+    label {margin-bottom: 1rem;}
+    input {
+      border: none;
+      border-bottom: 2px solid $orange;
+      padding-bottom: 1rem;
+    }
+    .user {
+      background: url("../assets/imgs/icon_user.png");
+      background-size: contain;
+      background-position: right center;
+      background-repeat: no-repeat;
+    }
+    .password {
+      background: url("../assets/imgs/icon_password.png");
+      background-size: contain;
+      background-position: right center;
+      background-repeat: no-repeat;
+    }
+    .button-section {
+      button {
+        color: #fff;
+        width: 30vw !important;
+        margin-top: 2rem !important;
+      }
+    }
   }
 }

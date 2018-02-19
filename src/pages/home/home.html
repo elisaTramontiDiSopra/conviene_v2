@@ -1,24 +1,43 @@
 <ion-content>
+
+  <!-- LOGIN MODAL -->
+  <div *ngIf='showLoginModal===true' class="modal ">
+    <div class='modal-inner'>
+      <div class='modal-top orange'> Login </div>
+      <div class='modal-inner-container'>
+        <input class="user" [(ngModel)]="user.name" onClick="this.setSelectionRange(0, this.value.length)">
+        <input class="password" [(ngModel)]="user.password" onClick="this.setSelectionRange(0, this.value.length)">
+        <div class='button-section'>
+          <button class="button orange" (tap)='login()'> Login </button>
+          <button class="button dark" (tap)='authService.registerWithGoogle()'> Registrati </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="buttonContainer">
-    <div id="product-add" class="functionButtons" (tap)="goToPage('AddProductPage')">
-      <p class="buttonText">nuovo<br/>prodotto</p>
+    <div class="functionButtons darkpurple" (tap)="goToPage('AddProductPage')">
+      <p class="buttonText">nuovo
+        <br/>prodotto</p>
       <img src='assets/imgs/icon_add_product.png' />
     </div>
-    <div id="product-list" class="functionButtons" (tap)="goToPage('ListProductsPage')">
-      <p class="buttonText">Lista<br/>prodotti</p>
+    <div class="functionButtons purple" (tap)="goToPage('ListProductsPage')">
+      <p class="buttonText">Lista
+        <br/>prodotti</p>
       <img src='assets/imgs/icon_product.png' />
     </div>
-    <div id="conviene" class="functionButtons" (tap)="goToPage('ConvienePage')">
+    <div class="functionButtons orange" (tap)="goToPage('ConvienePage')">
       <p class="buttonText">Conviene ?</p>
       <img src='assets/imgs/icon_conviene.png' />
     </div>
-    <div id="cart-add" class="functionButtons" (tap)="goToPage('ListShoppingPage')">
-      <p class="buttonText">Lista<br/>spesa</p>
+    <div class="functionButtons cerulean" (tap)="goToPage('ListShoppingPage')">
+      <p class="buttonText">Lista
+        <br/>spesa</p>
       <img src='assets/imgs/icon_shopping_list.png' />
     </div>
-    <div id="shopping-list" class="functionButtons">
+    <div class="functionButtons darkblue">
       <p class="buttonText">Opzioni</p>
-      <img src='assets/imgs/icon_options.png'(tap)="goToPage('OptionsPage')" />
+      <img src='assets/imgs/icon_options.png' (tap)="goToPage('OptionsPage')" />
     </div>
   </div>
 </ion-content>

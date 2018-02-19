@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http'; /* after httpModule */
 
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 
 // VIEWS
@@ -16,6 +18,7 @@ import { MyApp } from './app.component';
 import { ComponentsModule } from '../components/components.module'
 import { FireServiceProvider } from '../providers/fire-service/fire-service';
 import { HttpClient } from '@angular/common/http';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { HttpClient } from '@angular/common/http';
     AngularFirestoreModule.enablePersistence(),
     ComponentsModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +43,9 @@ import { HttpClient } from '@angular/common/http';
     SplashScreen,
     HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FireServiceProvider
+    FireServiceProvider,
+    AngularFireAuth,
+    AuthServiceProvider,
   ]
 })
 export class AppModule {}
