@@ -7,6 +7,8 @@ import {
 import { Observable } from "rxjs/Observable";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { userInterface } from '../../classes/user/user.class';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -16,8 +18,6 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 export class ListProductsPage {
   productCollection: AngularFirestoreCollection<Product>;
   productsObservableList: Observable<Product[]>;
-  //productDocument: AngularFirestoreDocument<Product>;
-  //productObservableDocument: Observable<Product>;
 
   shoppingListsCollection: AngularFirestoreCollection<any>;
   shoppingListsObservable: Observable<any[]>;
@@ -27,10 +27,12 @@ export class ListProductsPage {
 
       /* MODALS*/ showAddModal = false; adding; productForModal;  quantity = 1;
   /* SEARCH BAR*/ searchTerm; filterableProductList = []; completeProductList = []
-
-  constructor( public navCtrl: NavController, public navParams: NavParams,  private afs: AngularFirestore ) {
+       /* USER */ user: userInterface;
+  constructor( public navCtrl: NavController, public navParams: NavParams,  private afs: AngularFirestore, public authService: AuthServiceProvider ) {
     this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
     this.productsObservableList = this.productCollection.valueChanges()
+    // invece di prenderlo qui l'utente posso sa
+    if(this.authService.checkUserLogged() !== null) {this.user = this.authService.checkUserLogged()}
   }
 
   ngOnInit() {

@@ -33,7 +33,7 @@
     <ion-searchbar [(ngModel)]="searchTerm" [animated]="true" (ionInput)="searchProduct(searchTerm)"></ion-searchbar>
   </div>
 
-  <div class="container">
+  <div *ngIf='!showAddModal' class="container">
     <div class="list">
       <div class="list-item" *ngFor='let product of filterableProductList'>
         <div class="text">
