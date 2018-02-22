@@ -1,3 +1,4 @@
+//import { AuthServiceProvider } from './auth-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -33,6 +34,14 @@ export class AuthServiceProvider {
     });
   };
 
+  checkUserLogged() {
+    if (this.afAuth.auth.currentUser !== null) { return this.afAuth.auth.currentUser}
+    //else {return false}
+  }
+
+  getUserId() {
+    return this.afAuth.auth.currentUser
+  }
 
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider()
