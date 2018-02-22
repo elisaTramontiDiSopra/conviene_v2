@@ -1,3 +1,4 @@
+import { FireServiceProvider } from './../../providers/fire-service/fire-service';
 import { HomePage } from './../home/home';
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController,  NavParams} from 'ionic-angular';
@@ -23,12 +24,12 @@ export class ProductPage {
   //per visualizzare i --.-- prima di mettere il prezzo
   priceClicked = false;   priceSaleClicked = false;
 
-  /* PARAMETERS */ section; product = {name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo'} as Product;
+  /* PARAMETERS */ section; product = {name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: null, shopSale: '', unitySale: 'kilo'} as Product;
        /* ALERT */ showAlertForNameAndPrice = false;
        /* MODALS*/ showAddModal = false; adding; productForModal;  quantity = 1;
 
   constructor(
-    public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore) {
+    public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public fireService: FireServiceProvider) {
     // se section non è specificata allora è pagina prodotto
     if (this.navParams.get('section') === undefined) {this.section = 'productPage'} else {this.section = this.navParams.get('section')}
     // se product è specificato product = prodotto specificato altrimenti resta il prodotto vuoto messo sopra in variabile
@@ -50,8 +51,6 @@ export class ProductPage {
   }
 
   // ADD TO CART
-  showAddToCartModal() {}
-
   addToCart(product, adding, quantity) {
     //this.convieneService.addToCart(product, adding, quantity);
     console.log(product);
@@ -128,5 +127,14 @@ export class ProductPage {
   edit() {
     this.section='editProductPage';
   }
+
+  addProductToDb(product) {
+    if (this.fireService.addProductToDb(product) === 'productPage') {this.section = 'productPage'} else {this.section = 'editProductPage'}
+  }
+  deleteProductToDb(product) {
+    this.fireService.deleteProductFromDB(product);
+    this.navCtrl.push('HomePage');
+  }
+
 
 }
