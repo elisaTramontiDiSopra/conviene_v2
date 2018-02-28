@@ -1,24 +1,5 @@
 <ion-content>
 
-  <!-- LOGIN MODAL -->
-  <div *ngIf='showLoginModal===true' class="modal ">
-    <div class='modal-inner'>
-      <div class='modal-top orange'> Login </div>
-      <div class='modal-inner-container'>
-        <input class="user" [(ngModel)]="user.name" onClick="this.setSelectionRange(0, this.value.length)">
-        <input class="password" [(ngModel)]="user.password" onClick="this.setSelectionRange(0, this.value.length)">
-        <div class='button-section'>
-          <button class="button orange" (tap)='login()'> Login </button>
-          <button class="button dark" (tap)='authService.registerWithGoogle()'> Registrati </button>
-        </div>
-        <div class='button-google'>
-          <button class="button orange" (tap)='loginWithGoogle()'> Login with Google</button>
-          <button class="button dark" (tap)='authService.registerWithGoogle()'> Registrati with Google</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="buttonContainer">
     <div class="functionButtons darkpurple" (tap)="goToPage('ProductPage')">
       <p class="buttonText">nuovo

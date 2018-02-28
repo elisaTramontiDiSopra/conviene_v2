@@ -3,5 +3,5 @@ export interface userInterface {
   email: string;
   photoURL?: string;
   displayName?: string;
-  favoriteColor?: string;
+  password?: string;
 }
