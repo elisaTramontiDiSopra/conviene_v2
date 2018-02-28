@@ -8,18 +8,11 @@ import { NavController, IonicPage, NavParams } from 'ionic-angular';
 })
 export class HomePage {
 
-      /* UID */  uid;
-  /* STORAGE */ local;
-
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.uid = this.navParams.get('uid');
-    console.log('home uid '+this.uid);
   }
-
 
   goToPage(page) {
     this.navCtrl.push(page);
     console.log(page);
   }
-
 }

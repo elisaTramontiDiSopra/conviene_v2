@@ -21,10 +21,10 @@ export class LoginPage {
   user;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider, private afs: AngularFirestore, private storage: Storage) {
-    console.log('login constructor');
+    //console.log('login constructor');
     this.user = this.afAuth.auth.currentUser;;
     this.storage.get('uid').then(localStorageUser =>{
-      console.log(localStorageUser);
+      //console.log(localStorageUser);
       if (localStorageUser !== '' && localStorageUser !== null) {
         this.navCtrl.setRoot('HomePage', {user: this.user });
       }
