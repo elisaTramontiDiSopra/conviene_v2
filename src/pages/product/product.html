@@ -103,7 +103,7 @@
           <img src='assets/imgs/icon_ok.png' />
           <span>salva</span>
         </div> -->
-        <div class="button cerulean" (tap)='addProductToDb(product)'>
+        <div class="button cerulean" (tap)='addOrEditProductToDb(product)'>
           <img src='assets/imgs/icon_ok.png' />
           <span>salva</span>
         </div>
@@ -142,6 +142,26 @@
           </button>
           <button class="button dark" (tap)='this.quantity = 1; showAddModal = false;'>
             <img src='assets/imgs/icon_x.png' />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELETE MODAL -->
+  <div *ngIf='showDeleteModal===true' class="modal ">
+    <div class='modal-inner'>
+      <div class='modal-top cerulean'>
+        <img src='assets/imgs/icon_delete.png' />
+      </div>
+      <div class='modal-inner-container'>
+        <p>Sei sicuro di voler eliminare dal tuo database <strong>{{product.name}}</strong>?</p>
+        <div class='button-section'>
+          <button class="button cerulean" (tap)='deleteProductFromDB(product)'>
+            <img src='assets/imgs/icon_delete.png' /> Sì, elimina
+          </button>
+          <button class="button dark" (tap)='showDeleteModal = false'>
+            <img src='assets/imgs/icon_back.png' /> No, torna 'ndrio
           </button>
         </div>
       </div>
@@ -190,7 +210,7 @@
           <img src='assets/imgs/icon_edit.png' />
           <span>Modifica</span>
         </div>
-        <div class="button darkcerulean" (tap)='deleteProductFromDB()'>
+        <div class="button darkcerulean" (tap)='showDeleteModal = true'>
           <img src='assets/imgs/icon_delete.png' />
           <span>cancella</span>
         </div>

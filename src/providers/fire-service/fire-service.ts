@@ -1,7 +1,7 @@
 import { AuthServiceProvider } from './../auth-service/auth-service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
 import { Product } from "../../classes/products/products.class";
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
@@ -14,20 +14,21 @@ export class FireServiceProvider {
   productsObservableList: Observable<Product[]>;
   shoppingListsCollection: AngularFirestoreCollection<any>;
 
-  // PROODUCT USER
-  productUserCollection: AngularFirestoreCollection<Product>;
-
+    /* USER FIRESTORE DB */ productUserCollection: AngularFirestoreCollection<Product>; productsUserObservableList: Observable<Product[]>
              /* ADD MODAL*/ /* showAddModal = false; adding; productForModal; quantity = 1; */
   /* UPDATE PRODUCT MODAL*/ showUpdateProductModal = false; updateAdding; productForUpdateModal;
      /* ADD PRODUCT MODAL*/ showAddProductModal = false; adding; productForAddModal; quantity;
 /* ALERT NAME-PRICE MODAL*/ showAlertForNameAndPrice = false;
          /* CURRENT USER */ currentUser
 
-  constructor(public http: HttpClient, private afs: AngularFirestore, public authService: AuthServiceProvider) {
+  constructor(public http: HttpClient, private afs: AngularFirestore, public authService: AuthServiceProvider, public storage: Storage) {
     this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
     this.productsObservableList = this.productCollection.valueChanges()
-    console.log("contructor");
-    //this.getCurrentUser();
+    this.storage.get('uid').then(localStorageUser => {
+      this.currentUser = localStorageUser;
+      this.productUserCollection = this.afs.collection('prod-'+this.currentUser, ref => ref.orderBy('name'));
+      this.productsUserObservableList = this.productUserCollection.valueChanges();
+    });
   }
 
   // GENERIC
@@ -36,30 +37,33 @@ export class FireServiceProvider {
     product.shop = product.shop.toLowerCase();
     product.shopSale = product.shopSale.toLowerCase();
   }
-  getCurrentUser() {
-    this.currentUser = this.authService.getUserId();
+ /*  getCurrentUser() {
+    //this.currentUser = this.authService.getUserId();
     this.productUserCollection = this.afs.collection("prod-" + this.currentUser.uid);
-  }
+  } */
 
 
   // CRUD PRODUCT OPERATIONS - PRODUCT PAGE
-  addProductToDb(product) {
-    // creo una root collection personalizzata con l'ID utente
-    this.getCurrentUser();
+  addOrEditProductToDb(product) {
     this.lowerCase(product);
-    if (product.name !== '' && (product.price !== null || product.priceSale !== null)) {
-      // creo un id (anche come proprietà), lo salvo come nome del documento e poi metto nel documento
-      // tutte le proprietà del prodotto, id compreso
-      product.id = this.afs.createId();
+    // se il prodotto non ha un ID vuol dire che non esiste, quindi devo aggiungerlo al DB e tornare alla productPage
+    if (!product.id) {
+      if (product.name !== '' && (product.price !== null || product.priceSale !== null)) {
+        product.id = this.afs.createId();
+        this.productUserCollection.doc(product.id).set(product);
+        return 'productPage';
+      } /* else {
+        this.showAlertForNameAndPrice = true;
+        console.log("alert");
+      } */
+    // se il prodotto invece l'ID ce l'ha vuol dire che devo solo aggiornarlo e tornare alla productPage
+    } else {
       this.productUserCollection.doc(product.id).set(product);
       return 'productPage';
-    } /* else {
-      this.showAlertForNameAndPrice = true;
-      console.log("alert");
-    } */
+    }
   }
+
   deleteProductFromDB(product) {
-    this.getCurrentUser();
     this.productUserCollection.doc(product.id).delete();
   }
 

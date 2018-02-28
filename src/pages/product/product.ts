@@ -25,7 +25,7 @@ export class ProductPage {
 
   /* PARAMETERS */ section; product = {name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: null, shopSale: '', unitySale: 'kilo'} as Product;
        /* ALERT */ showAlertForNameAndPrice = false;
-       /* MODALS*/ showAddModal = false; adding; productForModal;  quantity = 1;
+      /* MODALS */ showAddModal = false; adding; productForModal;  quantity = 1; showDeleteModal = false;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public fireService: FireServiceProvider) {
@@ -127,10 +127,11 @@ export class ProductPage {
     this.section='editProductPage';
   }
 
-  addProductToDb(product) {
-    if (this.fireService.addProductToDb(product) === 'productPage') {this.section = 'productPage'} else {this.section = 'editProductPage'}
+  addOrEditProductToDb(product) {
+    if (this.fireService.addOrEditProductToDb(product) === 'productPage') {this.section = 'productPage'} else {this.section = 'editProductPage'}
   }
-  deleteProductToDb(product) {
+  deleteProductFromDB(product) {
+    //console.log(product);
     this.fireService.deleteProductFromDB(product);
     this.navCtrl.push('HomePage');
   }

@@ -202,4 +202,20 @@ page-product {
     }
   }
 
+  // modal long buttons
+  .modal-inner-container {
+    .button-section {
+      width: fit-content;
+      button {
+        width: 50vw !important;
+        height: 7vh !important;
+        margin: 1vh !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        img{margin: 0 10px}
+      }
+    }
+  }
+
 }
