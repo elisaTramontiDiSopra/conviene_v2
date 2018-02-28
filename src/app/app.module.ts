@@ -12,6 +12,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 // VIEWS
 import { MyApp } from './app.component';
 
@@ -27,6 +29,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFirestoreModule.enablePersistence(),
     ComponentsModule,
