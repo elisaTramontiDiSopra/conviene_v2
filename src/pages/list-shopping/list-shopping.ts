@@ -9,6 +9,7 @@ import {
 } from "angularfire2/firestore";
 import { Observable } from "rxjs/Observable";
 import * as firebase from "firebase/app";
+import { FireServiceProvider } from '../../providers/fire-service/fire-service';
 
 @IonicPage()
 @Component({
@@ -27,7 +28,7 @@ export class ListShoppingPage implements OnDestroy {
   /* DISPLAY LISTS */ shoppingLists = []; semitransparent = [];
          /* SPINNER*/ showSpinner;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public fireService: FireServiceProvider ) {
     this.shoppingListsCollection = this.afs.collection("lists");
     this.shoppingShopsDocument = this.afs.collection("shops").doc("shopLists");
   }
@@ -88,7 +89,7 @@ export class ListShoppingPage implements OnDestroy {
       if (this.semitransparent[shop][product] === false) {
         this.secureDelete = false;
         this.deleteMessage =
-          "Non tutti i prodotti i prodotti della lista risultano presi. Sei sicuro di voler cancellare questa lista? L'operazione è definitiva e i dati non portanno essere recuperati";
+          "Non tutti i prodotti della lista risultano presi.\n Sei sicuro di voler cancellare questa lista?";
       } else {
         this.secureDelete = true;
         this.deleteMessage =
@@ -110,6 +111,10 @@ export class ListShoppingPage implements OnDestroy {
 
   ngOnDestroy() {
     this.listsSubscription.unsubscribe();
+  }
+
+  deletListFromDB(list) {
+    this.fireService.deleteProductFromDB(list);
   }
 
 }

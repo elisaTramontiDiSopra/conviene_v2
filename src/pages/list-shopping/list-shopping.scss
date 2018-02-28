@@ -120,7 +120,7 @@ page-list-shopping {
     .bottom.sale { background-color: $cerulean; color: #fff;  }
   }
   // Modal
-  .modal {
+  /* .modal {
     font-size: 3vh;
     font-weight: bolder;
     .normal {
@@ -170,6 +170,26 @@ page-list-shopping {
           text-transform: uppercase;
           margin-top: 1vh;
         }
+      }
+    }
+  } */
+
+  // modal long buttons
+  .modal-inner-container {
+    .button-section {
+      width: fit-content;
+      margin-top: 2vh;
+      button {
+        width: 50vw !important;
+        height: 7vh !important;
+        margin: 1vh !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        color: #fff;
+        text-transform: uppercase;
+        img{margin: 0 10px}
       }
     }
   }

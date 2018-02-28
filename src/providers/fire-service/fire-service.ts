@@ -15,6 +15,7 @@ export class FireServiceProvider {
   shoppingListsCollection: AngularFirestoreCollection<any>;
 
     /* USER FIRESTORE DB */ productUserCollection: AngularFirestoreCollection<Product>; productsUserObservableList: Observable<Product[]>
+    /* USER FIRESTORE DB */ listUserCollection: AngularFirestoreCollection<Product>; listUserObservableList: Observable<Product[]>
              /* ADD MODAL*/ /* showAddModal = false; adding; productForModal; quantity = 1; */
   /* UPDATE PRODUCT MODAL*/ showUpdateProductModal = false; updateAdding; productForUpdateModal;
      /* ADD PRODUCT MODAL*/ showAddProductModal = false; adding; productForAddModal; quantity;
@@ -27,6 +28,7 @@ export class FireServiceProvider {
     this.storage.get('uid').then(localStorageUser => {
       this.currentUser = localStorageUser;
       this.productUserCollection = this.afs.collection('prod-'+this.currentUser, ref => ref.orderBy('name'));
+      this.listUserCollection = this.afs.collection('list-'+this.currentUser, ref => ref.orderBy('name'));
       this.productsUserObservableList = this.productUserCollection.valueChanges();
     });
   }
@@ -66,6 +68,14 @@ export class FireServiceProvider {
   deleteProductFromDB(product) {
     this.productUserCollection.doc(product.id).delete();
   }
+
+
+
+  // CRUD OPERATIONS - SHOPPING LIST
+  deleteProductFromDB() {
+
+  }
+
 
   //BUTTONS FUNCTIONS
  /*
