@@ -1,6 +1,5 @@
 import { FireServiceProvider } from './../../providers/fire-service/fire-service';
-import { HomePage } from './../home/home';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController,  NavParams} from 'ionic-angular';
 import { Product } from '../../classes/products/products.class';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument} from 'angularfire2/firestore';

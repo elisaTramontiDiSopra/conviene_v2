@@ -9,6 +9,7 @@ import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { userInterface } from '../../classes/user/user.class';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -21,32 +22,40 @@ export class ListProductsPage {
 
   shoppingListsCollection: AngularFirestoreCollection<any>;
   shoppingListsObservable: Observable<any[]>;
-  shoppingShopsCollection: AngularFirestoreCollection<any>;
 
   showAlertForNameAndPrice = false;
 
-      /* MODALS*/ showAddModal = false; adding; productForModal;  quantity = 1;
+      /* MODALS*/ showAddModal = false; adding; productForModal; quantity = 1;
   /* SEARCH BAR*/ searchTerm; filterableProductList = []; completeProductList = []
-       /* USER */ user: userInterface;
-  constructor( public navCtrl: NavController, public navParams: NavParams,  private afs: AngularFirestore, public authService: AuthServiceProvider ) {
-    this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
-    this.productsObservableList = this.productCollection.valueChanges()
-    // invece di prenderlo qui l'utente posso sa
-    if(this.authService.checkUserLogged() !== null) {this.user = this.authService.checkUserLogged()}
+        /* UID */ uid;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public authService: AuthServiceProvider, private storage: Storage) {
+    this.setProductListCollection();
+    this.setShoppingListCollection();
   }
 
-  ngOnInit() {
-    this.productsObservableList.subscribe(p => {
-      this.filterableProductList = p;
-      this.completeProductList = p;
+  setProductListCollection() {
+    this.storage.get('uid').then(res => {
+      this.uid = res;
+      this.productCollection = this.afs.collection("prod-" + this.uid, ref => ref.orderBy('name'));
+      this.productsObservableList = this.productCollection.valueChanges();
+      this.productsObservableList.subscribe(p => {
+        this.filterableProductList = p;
+        this.completeProductList = p;
+      });
     });
+  }
+
+  setShoppingListCollection() {
+    this.shoppingListsCollection = this.afs.collection("list-" + this.uid);
+    this.shoppingListsObservable = this.shoppingListsCollection.valueChanges();
   }
 
   searchProduct(searchTerm) {
     this.filterableProductList = this.completeProductList.filter(prod => {
       console.log(prod.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
-      if(prod.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
-      return prod
+      if (prod.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1) {
+        return prod
       }
     });
     if (searchTerm === '') {
@@ -77,22 +86,24 @@ export class ListProductsPage {
             shop: product.shop,
             id: product.id
           }
-        }},{merge: true});
-      } else if (this.adding === "sale") {
-        //aggiungo il prodotto alla collection con il nome del negozio
-        this.shoppingListsCollection.doc(product.shop).set({
-          shopName: product.shop,
-          products: {
-            [product.id]: {
-              name: product.name,
-              quantity: this.quantity,
-              price: product.price,
-              sale: true,
-              shop: product.shop,
-              id: product.id
-            }
-          }},{merge: true});
-      }
+        }
+      }, { merge: true });
+    } else if (this.adding === "sale") {
+      //aggiungo il prodotto alla collection con il nome del negozio
+      this.shoppingListsCollection.doc(product.shop).set({
+        shopName: product.shop,
+        products: {
+          [product.id]: {
+            name: product.name,
+            quantity: this.quantity,
+            price: product.price,
+            sale: true,
+            shop: product.shop,
+            id: product.id
+          }
+        }
+      }, { merge: true });
+    }
     /* THIS DOWN HERE WORKS
     this.shoppingListsCollection = this.afs.collection("lists");
     this.shoppingShopsCollection = this.afs.collection("shops");
@@ -137,6 +148,6 @@ export class ListProductsPage {
   }
 
   goToProduct(prod) {
-    this.navCtrl.push("ProductPage", {section: "productPage", product: prod});
+    this.navCtrl.push("ProductPage", { section: "productPage", product: prod });
   }
 }

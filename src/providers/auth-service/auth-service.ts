@@ -26,6 +26,7 @@ export class AuthServiceProvider {
 
   login() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    //this.afAuth.auth.setPersistence('local');
   }
 
   logout() {
@@ -35,8 +36,13 @@ export class AuthServiceProvider {
   };
 
   checkUserLogged() {
-    if (this.afAuth.auth.currentUser !== null) { return this.afAuth.auth.currentUser}
-    //else {return false}
+    if (this.afAuth.auth.currentUser !== null) {
+      console.log(this.afAuth.auth.currentUser);
+      return this.afAuth.auth.currentUser}
+    else {
+      console.log('utente NON loggato');
+      return false;
+    }
   }
 
   getUserId() {

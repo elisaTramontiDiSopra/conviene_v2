@@ -1,7 +1,7 @@
 <!-- ADD PRODUCT PAGE -->
 <ion-content>
   <!-- ADD MODAL -->
-  <div *ngIf='showAddModal===true' class="modal" [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}">
+  <div *ngIf='showAddModal' class="modal" [ngClass]="{'normal': adding === 'normal', 'sale': adding==='sale'}">
     <div class='modal-inner'>
       <div class='modal-top' [ngClass]="{'purple': adding === 'normal', 'orange': adding==='sale'}">
         <img src='assets/imgs/icon_shopping_list.png' />
