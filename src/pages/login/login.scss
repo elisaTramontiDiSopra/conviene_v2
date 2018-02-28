@@ -1,0 +1,28 @@
+page-login {
+  .container {
+    background-color: $orange;
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ion-icon {
+      margin-right: 15px;
+    }
+    img {
+      margin-bottom: 5vh;
+    }
+    button {
+      //border: 1px solid #fff;
+      height: 7vh;
+      width: 70vw;
+      //background-color: transparent;
+      //color: #fff;
+      //display: flex;
+      //justify-content: center;
+      //align-items: center;
+      font-size: 1.5rem;
+    }
+  }
+}
