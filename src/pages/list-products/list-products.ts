@@ -10,6 +10,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { userInterface } from '../../classes/user/user.class';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { Storage } from '@ionic/storage';
+import { FireServiceProvider } from '../../providers/fire-service/fire-service';
 
 @IonicPage()
 @Component({
@@ -29,7 +30,8 @@ export class ListProductsPage {
   /* SEARCH BAR*/ searchTerm; filterableProductList = []; completeProductList = []
         /* UID */ uid;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore, public authService: AuthServiceProvider, private storage: Storage) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore,
+    public authService: AuthServiceProvider, private storage: Storage, public fireService: FireServiceProvider ) {
     this.setProductListCollection();
     this.setShoppingListCollection();
   }
@@ -71,8 +73,14 @@ export class ListProductsPage {
   }
 
   addProductToList(product) {
+    console.log(product);
+    this.fireService.addProductToUserList(product, this.adding, this.quantity);
+    this.showAddModal = false;
+  }
+
+/*   addProductToList(product) { */
     // add document with the name of the shop and products as property with the id as name property (to avoid copies)
-    this.shoppingListsCollection = this.afs.collection("lists");
+   /*  this.shoppingListsCollection = this.afs.collection("lists");
     if (this.adding === "normal") {
       //aggiungo il prodotto alla collection con il nome del negozio
       this.shoppingListsCollection.doc(product.shop).set({
@@ -103,7 +111,8 @@ export class ListProductsPage {
           }
         }
       }, { merge: true });
-    }
+    } */
+
     /* THIS DOWN HERE WORKS
     this.shoppingListsCollection = this.afs.collection("lists");
     this.shoppingShopsCollection = this.afs.collection("shops");
@@ -140,8 +149,8 @@ export class ListProductsPage {
           .update({ [product.shop]: true });
       }
     });*/
-    this.showAddModal = false;
-  }
+/*     this.showAddModal = false;
+  } */
 
   goToPage(page) {
     this.navCtrl.push(page);

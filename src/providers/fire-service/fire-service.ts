@@ -23,12 +23,12 @@ export class FireServiceProvider {
          /* CURRENT USER */ currentUser
 
   constructor(public http: HttpClient, private afs: AngularFirestore, public authService: AuthServiceProvider, public storage: Storage) {
-    this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
-    this.productsObservableList = this.productCollection.valueChanges()
+    //this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
+    //this.productsObservableList = this.productCollection.valueChanges()
     this.storage.get('uid').then(localStorageUser => {
       this.currentUser = localStorageUser;
-      this.productUserCollection = this.afs.collection('prod-'+this.currentUser, ref => ref.orderBy('name'));
-      this.listUserCollection = this.afs.collection('list-'+this.currentUser, ref => ref.orderBy('name'));
+      this.productUserCollection = this.afs.collection('prod-' + this.currentUser, ref => ref.orderBy('name'));
+      this.listUserCollection = this.afs.collection('list-' + this.currentUser);
       this.productsUserObservableList = this.productUserCollection.valueChanges();
     });
   }
@@ -39,11 +39,6 @@ export class FireServiceProvider {
     product.shop = product.shop.toLowerCase();
     product.shopSale = product.shopSale.toLowerCase();
   }
- /*  getCurrentUser() {
-    //this.currentUser = this.authService.getUserId();
-    this.productUserCollection = this.afs.collection("prod-" + this.currentUser.uid);
-  } */
-
 
   // CRUD PRODUCT OPERATIONS - PRODUCT PAGE
   addOrEditProductToDb(product) {
@@ -58,43 +53,81 @@ export class FireServiceProvider {
         this.showAlertForNameAndPrice = true;
         console.log("alert");
       } */
-    // se il prodotto invece l'ID ce l'ha vuol dire che devo solo aggiornarlo e tornare alla productPage
+      // se il prodotto invece l'ID ce l'ha vuol dire che devo solo aggiornarlo e tornare alla productPage
     } else {
       this.productUserCollection.doc(product.id).set(product);
       return 'productPage';
     }
   }
-
   deleteProductFromDB(product) {
     this.productUserCollection.doc(product.id).delete();
   }
 
 
+  // PRODUCT LIST
+  addProductToUserList(product, adding, quantity) {
+    console.log(product);
+    console.log(adding);
+    // add document with the name of the shop and products as property with the id as name property (to avoid copies)
+    if (adding === "normal") {
+      //aggiungo il prodotto alla collection con il nome del negozio
+      this.listUserCollection.doc(product.shop).set({
+        shopName: product.shop,
+        products: {
+          [product.id]: {
+            name: product.name,
+            quantity: quantity,
+            price: product.price,
+            sale: false,
+            shop: product.shop,
+            id: product.id
+          }
+        }
+      }, { merge: true });
+    } else if (adding === "sale") {
+      console.log(product.shopSale);
+      console.log(this.listUserCollection);
+      //aggiungo il prodotto alla collection con il nome del negozio
+      console.log(this.listUserCollection.doc(product.shopSale).valueChanges());
+       this.listUserCollection.doc(product.shopSale).set({
+        shopName: product.shop,
+        products: {
+          [product.id]: {
+            name: product.name,
+            quantity: quantity,
+            price: product.price,
+            sale: true,
+            shop: product.shopSale,
+            id: product.id
+          }
+       }
+      }, { merge: true });
+    }
+  }
+
 
   // CRUD OPERATIONS - SHOPPING LIST
-  deleteProductFromDB() {
 
-  }
 
 
   //BUTTONS FUNCTIONS
- /*
-  delete() {
-    this.product = { name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo', id: '' };
-    this.priceClicked = false;
-    this.priceSaleClicked = false;
-  }
-  goToPage(page) {
-    this.navCtrl.push(page);
-    console.log(page);
-  }
-  goBack() {
-    this.navCtrl.pop();
-  }
-  edit() {
-    this.section = 'editProductPage';
-  }
- */
+  /*
+   delete() {
+     this.product = { name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo', id: '' };
+     this.priceClicked = false;
+     this.priceSaleClicked = false;
+   }
+   goToPage(page) {
+     this.navCtrl.push(page);
+     console.log(page);
+   }
+   goBack() {
+     this.navCtrl.pop();
+   }
+   edit() {
+     this.section = 'editProductPage';
+   }
+  */
 
 
 

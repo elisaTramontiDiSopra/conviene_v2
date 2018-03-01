@@ -113,8 +113,8 @@ export class ListShoppingPage implements OnDestroy {
     this.listsSubscription.unsubscribe();
   }
 
-  deletListFromDB(list) {
-    this.fireService.deleteProductFromDB(list);
+  deletListFromDB() {
+    this.fireService.deleteProductFromDB(this.deleteShop);
   }
 
 }
