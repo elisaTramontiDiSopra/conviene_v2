@@ -1,10 +1,9 @@
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import * as firebase from 'firebase/app';
-import { userInterface } from '../../classes/user/user.class';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { Storage } from '@ionic/storage';
 
@@ -15,8 +14,7 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage {
 
-  /* INPUT USER */ email = ''; password = ''; //servono per non far venire fuori errori di user null
-  /* USER * user: userInterface = {uid: '', email: '', photoURL: '', displayName: '', password: ''};*/
+  /* INPUT USER  email = ''; password = ''; //servono per non far venire fuori errori di user null*/
 
   user;
 
@@ -29,18 +27,6 @@ export class LoginPage {
         this.navCtrl.setRoot('HomePage', {user: this.user });
       }
     });
-
-    //console.log(this.user);
-    /* if (this.afAuth.auth.currentUser !== null && this.afAuth.auth.currentUser !== undefined) {
-      this.storage.set('uid', this.user.uid);
-      this.navCtrl.setRoot('HomePage', { user: this.user });
-    } */
-  }
-
-
-
-  login() {
-
   }
 
   loginWithGoogle() {
