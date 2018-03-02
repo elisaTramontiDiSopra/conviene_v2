@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'; /* after httpModule */
+import { GooglePlus } from '@ionic-native/google-plus';
 
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from 'angularfire2/firestore';
@@ -44,6 +45,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
   providers: [
     StatusBar,
     SplashScreen,
+    GooglePlus,
     HttpClient,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FireServiceProvider,
