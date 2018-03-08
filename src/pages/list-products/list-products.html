@@ -44,10 +44,16 @@
           </div>
         </div>
         <div class="icons">
-          <button class="button normal" (tap)='showModal("normal", product)'>
+          <button *ngIf='product.shop !== ""' class="button normal" (tap)='showModal("normal", product)'>
             <img src='assets/imgs/icon_add_to_cart.png' />
           </button>
-          <button class="button sale" (tap)='showModal("sale", product)'>
+          <button *ngIf='product.shop === ""' class="button semitransp normal">
+            <img src='assets/imgs/icon_add_to_cart.png' />
+          </button>
+          <button *ngIf='product.shopSale !== ""'  class="button sale" (tap)='showModal("sale", product)'>
+            <img src='assets/imgs/icon_add_to_cart.png' />
+          </button>
+          <button *ngIf='product.shopSale === ""'  class="button semitransp sale">
             <img src='assets/imgs/icon_add_to_cart.png' />
           </button>
           <button class="button product" (tap)='goToProduct(product)'>

@@ -68,8 +68,10 @@ export class FireServiceProvider {
   addProductToUserList(product, adding, quantity) {
     console.log(product);
     console.log(adding);
+    if (product.price === '') {product.price = '???'};
     // add document with the name of the shop and products as property with the id as name property (to avoid copies)
     if (adding === "normal") {
+
       //aggiungo il prodotto alla collection con il nome del negozio
       this.listUserCollection.doc(product.shop).set({
         shopName: product.shop,
@@ -85,11 +87,8 @@ export class FireServiceProvider {
         }
       }, { merge: true });
     } else if (adding === "sale") {
-      console.log(product.shopSale);
-      console.log(this.listUserCollection);
       //aggiungo il prodotto alla collection con il nome del negozio
-      console.log(this.listUserCollection.doc(product.shopSale).valueChanges());
-       this.listUserCollection.doc(product.shopSale).set({
+      this.listUserCollection.doc(product.shopSale).set({
         shopName: product.shop,
         products: {
           [product.id]: {
@@ -100,7 +99,7 @@ export class FireServiceProvider {
             shop: product.shopSale,
             id: product.id
           }
-       }
+        }
       }, { merge: true });
     }
   }

@@ -41,6 +41,9 @@ page-list-products {
         &.sale { background-color: $orange };
         &.product { background-color: $cerulean };
       }
+      .semitransp {
+        opacity: 0.2;
+      }
     }
   }
   // Normal vs Sale

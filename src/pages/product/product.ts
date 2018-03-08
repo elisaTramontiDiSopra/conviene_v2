@@ -50,12 +50,18 @@ export class ProductPage {
   }
 
   // ADD TO CART
+  addProductToList(product) {
+    console.log(product);
+    this.fireService.addProductToUserList(product, this.adding, this.quantity);
+    this.showAddModal = false;
+  }
+
   addToCart(product, adding, quantity) {
     //this.convieneService.addToCart(product, adding, quantity);
     console.log(product);
   }
 
-  addProductToList(product) {
+  /* addProductToList(product) {
     // add document with the name of the shop and products as property with the id as name property (to avoid copies)
     this.shoppingListsCollection = this.afs.collection("lists");
     if (this.adding === "normal") {
@@ -88,7 +94,7 @@ export class ProductPage {
           }},{merge: true});
       }
     this.showAddModal = false;
-  }
+  } */
 
   showModal(type, product) {
     this.showAddModal = true;
