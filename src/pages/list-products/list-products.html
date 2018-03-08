@@ -8,14 +8,14 @@
       </div>
       <div class='modal-inner-container'>
         <div class="input-more-less-container">
-          <div class='quantity' [ngClass]="{'darkpurple': adding === 'normal', 'darkorange': adding==='sale'}" (tap)='quantity = quantity-1'>-</div>
+          <div class='quantity' [ngClass]="{'purple': adding === 'normal', 'orange': adding==='sale'}" (tap)='quantity = quantity-1'>-</div>
           <input [(ngModel)]="quantity">
-          <div class='quantity' [ngClass]="{'darkpurple': adding === 'normal', 'darkorange': adding==='sale'}" (tap)='quantity = quantity+1'>+</div>
+          <div class='quantity' [ngClass]="{'purple': adding === 'normal', 'orange': adding==='sale'}" (tap)='quantity = quantity+1'>+</div>
         </div>
         <p>Stai aggiungendo {{quantity}} di {{productForModal.name}} alla lista {{productForModal.shop}} </p>
         <div class='button-section'>
           <button class="button" [ngClass]="{'purple': adding === 'normal', 'orange': adding==='sale'}" (tap)='addProductToList(productForModal)'>
-            <img src='assets/imgs/icon_ok.png' />
+            <img src='assets/imgs/icon_ok.png' /> Nel carrello
           </button>
           <button class="button dark" (tap)='this.quantity = 1; showAddModal = false;'>
             <img src='assets/imgs/icon_x.png' />

@@ -13,9 +13,10 @@
 .dark {background-color: $dark;}
 .ligth {background-color: #fff;}
 
-// Hidden vs visible
+// Hidden vs visible vs semitransp
 .hidden {visibility: hidden;}
 .visible {visibility: visible;}
+.semitransp {opacity: 0.2;}
 
 // Containers
 .content {
