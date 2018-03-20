@@ -106,6 +106,8 @@ export class ProductPage {
   //BUTTONS FUNCTIONS
   save() {
     if (this.product.name !== '' && (this.product.price !== null || this.product.priceSale !== null)) {
+      this.product.shop = this.product.shop.toLowerCase();
+      this.product.shopSale = this.product.shopSale.toLowerCase()
       // creo un id (anche come proprietà), lo salvo come nome del documento e poi metto nel documento
       // tutte le proprietà del prodotto, id compreso
       // se l'id non esiste già vuol dire che il prodotto è nuovo e quindi lo creo, altrimenti aggiorno solo
