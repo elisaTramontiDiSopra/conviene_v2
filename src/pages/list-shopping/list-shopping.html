@@ -28,7 +28,7 @@
       <div class='modal-inner-container'>
         <div *ngFor="let str of deleteMessage.split('\n')">{{str}}</div>
         <div class='button-section'>
-          <button class="button cerulean" (tap)='deletListFromDB()'>
+          <button class="button cerulean" (tap)='deleteList()'>
             <img src='assets/imgs/icon_delete.png' /> Sì, elimina
           </button>
           <button class="button dark" (tap)='showDeleteModal = false'>
@@ -46,9 +46,6 @@
   <div *ngIf='!showDeleteModal' class='menu-button menu-button-dark'>
     <menu></menu>
   </div>
-
-
-
 
   <ul>
     <li *ngFor='let shop of shoppingLists' class='list'>

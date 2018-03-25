@@ -41,6 +41,7 @@ export class ListShoppingPage implements OnDestroy {
   }
 
   getShoppingLists() {
+    this.shoppingLists = [];
     this.storage.get('uid').then(res => {
       this.shoppingListsCollection = this.afs.collection("list-" + res);
       this.shoppingListsCollection.valueChanges().subscribe(res => {
@@ -82,11 +83,6 @@ export class ListShoppingPage implements OnDestroy {
      });
    }) */
 
-
-  arrayHack(val) {
-
-    return Array.of(val)
-  }
 
   /* THIs DOWN HERE WORKS
   // recupero i nomi dei negozi e li metto in listOfShops
@@ -134,8 +130,11 @@ export class ListShoppingPage implements OnDestroy {
   deleteList() {
     this.showSpinner = true;
     this.shoppingListsCollection.doc(this.deleteShop).delete();
-    this.shoppingLists = [];
-    setTimeout(() => { this.showSpinner = false; this.showDeleteModal = false; }, 1000)
+    //this.shoppingLists = [];
+    setTimeout(() => {
+      this.showSpinner = false;
+      this.showDeleteModal = false;
+    this.getShoppingLists();}, 1000)
   }
 
   goToPage(page) {
@@ -146,26 +145,6 @@ export class ListShoppingPage implements OnDestroy {
     this.listsSubscription.unsubscribe();
   }
 
-  deletListFromDB() {
-    this.fireService.deleteProductFromDB(this.deleteShop);
-  }
-
 }
 
 
-
-[
-  {
-    "products":
-      {
-        "NWxfBgvBKUTniWteeydM":
-          {
-            "id": "NWxfBgvBKUTniWteeydM",
-            "name": "bagnoschiuma",
-            "price": "1.19", "quantity": 1,
-            "sale": false, "shop": "d+"
-          }
-      },
-    "shopName": "d+"
-  },
-  { "products": { "P3Uu8Y2Qn5R1dhTZ4sBm": { "id": "P3Uu8Y2Qn5R1dhTZ4sBm", "name": "coca", "price": "0.38", "quantity": 1, "sale": false, "shop": "lidl" }, "zBCiOubI7QsOwIYTAUjz": { "id": "zBCiOubI7QsOwIYTAUjz", "name": "cous cous", "price": "1.59", "quantity": 1, "sale": false, "shop": "lidl" } }, "shopName": "lidl" }]

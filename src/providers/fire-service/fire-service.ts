@@ -16,15 +16,12 @@ export class FireServiceProvider {
 
     /* USER FIRESTORE DB */ productUserCollection: AngularFirestoreCollection<Product>; productsUserObservableList: Observable<Product[]>
     /* USER FIRESTORE DB */ listUserCollection: AngularFirestoreCollection<Product>; listUserObservableList: Observable<Product[]>
-             /* ADD MODAL*/ /* showAddModal = false; adding; productForModal; quantity = 1; */
   /* UPDATE PRODUCT MODAL*/ showUpdateProductModal = false; updateAdding; productForUpdateModal;
      /* ADD PRODUCT MODAL*/ showAddProductModal = false; adding; productForAddModal; quantity;
 /* ALERT NAME-PRICE MODAL*/ showAlertForNameAndPrice = false;
          /* CURRENT USER */ currentUser
 
   constructor(public http: HttpClient, private afs: AngularFirestore, public authService: AuthServiceProvider, public storage: Storage) {
-    //this.productCollection = this.afs.collection("products", ref => ref.orderBy('name'));
-    //this.productsObservableList = this.productCollection.valueChanges()
     this.storage.get('uid').then(localStorageUser => {
       this.currentUser = localStorageUser;
       this.productUserCollection = this.afs.collection('prod-' + this.currentUser, ref => ref.orderBy('name'));
@@ -39,6 +36,7 @@ export class FireServiceProvider {
     product.shop = product.shop.toLowerCase();
     product.shopSale = product.shopSale.toLowerCase();
   }
+
 
   // CRUD PRODUCT OPERATIONS - PRODUCT PAGE
   addOrEditProductToDb(product) {
@@ -103,33 +101,6 @@ export class FireServiceProvider {
       }, { merge: true });
     }
   }
-
-
-  // CRUD OPERATIONS - SHOPPING LIST
-
-
-
-  //BUTTONS FUNCTIONS
-  /*
-   delete() {
-     this.product = { name: '', img: '', price: null, unity: 'kilo', shop: '', priceSale: '', shopSale: '', unitySale: 'kilo', id: '' };
-     this.priceClicked = false;
-     this.priceSaleClicked = false;
-   }
-   goToPage(page) {
-     this.navCtrl.push(page);
-     console.log(page);
-   }
-   goBack() {
-     this.navCtrl.pop();
-   }
-   edit() {
-     this.section = 'editProductPage';
-   }
-  */
-
-
-
 
 
   // UPDATE - CONVIENE PAGE
@@ -231,8 +202,5 @@ export class FireServiceProvider {
   }
 
 
-  test() {
-    console.log('test');
-  }
 
 }
