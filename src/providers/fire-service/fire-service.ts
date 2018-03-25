@@ -70,8 +70,8 @@ export class FireServiceProvider {
     console.log(adding);
     if (product.price === '') {product.price = '???'};
     // add document with the name of the shop and products as property with the id as name property (to avoid copies)
-    if (adding === "normal") {
 
+    if (adding === "normal") {
       //aggiungo il prodotto alla collection con il nome del negozio
       this.listUserCollection.doc(product.shop).set({
         shopName: product.shop,
@@ -127,14 +127,6 @@ export class FireServiceProvider {
      this.section = 'editProductPage';
    }
   */
-
-
-
-
-
-
-
-
 
 
 

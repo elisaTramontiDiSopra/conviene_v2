@@ -47,10 +47,14 @@
     <menu></menu>
   </div>
 
+
+
+
   <ul>
     <li *ngFor='let shop of shoppingLists' class='list'>
       <p class='shop-name'>{{shop.shopName}}</p>
       <div class='product-list'>
+
         <div class='product' *ngFor='let product of shop.products, let i = index' [ngClass]='{"semitrasp" : this.semitransparent[shop.shopName][i]}'
           (tap)='this.semitransparent[shop.shopName][i] = !this.semitransparent[shop.shopName][i]'>
           <div class='top'>
