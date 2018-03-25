@@ -87,7 +87,7 @@ export class FireServiceProvider {
     } else if (adding === "sale") {
       //aggiungo il prodotto alla collection con il nome del negozio
       this.listUserCollection.doc(product.shopSale).set({
-        shopName: product.shop,
+        shopName: product.shopSale,
         products: {
           [product.id]: {
             name: product.name,
