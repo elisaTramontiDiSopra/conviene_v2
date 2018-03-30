@@ -19,6 +19,7 @@ export class LoginPage {
   user: Observable<firebase.User>;
   u; t; z; w;
   credential;
+  uid;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider,
     private afs: AngularFirestore, private storage: Storage,
@@ -51,9 +52,16 @@ export class LoginPage {
       'webClientId': '666755449242-a57bci9vlctglliip5bt6oiq8u33fvec.apps.googleusercontent.com',
       'offline': true,
     }).then(res => {
+      //alert(JSON.stringify(res));
       this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
-      this.storage.set('uid', res.user.uid);
-      this.navCtrl.setRoot('HomePage');
+      .then((suc) => {
+        //this.uid = suc['uid'];
+        this.storage.set('uid', suc['uid']);
+        this.navCtrl.setRoot('HomePage');
+        //alert(JSON.stringify(suc));
+      }).catch((err) => {
+        alert(err)
+      });
     })
   }
 
