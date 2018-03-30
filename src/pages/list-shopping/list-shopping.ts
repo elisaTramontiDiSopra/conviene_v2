@@ -25,18 +25,10 @@ export class ListShoppingPage implements OnDestroy {
   /* DISPLAY LISTS */ shoppingLists = []; semitransparent = []; shopsList; shopProducts = [];
          /* SPINNER*/ showSpinner;
 
-  constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private storage: Storage,
-    private afs: AngularFirestore,
-    public fireService: FireServiceProvider) {
-    //this.shoppingListsCollection = this.afs.collection("lists");
-    //this.shoppingShopsDocument = this.afs.collection("shops").doc("shopLists");
+  constructor( public navCtrl: NavController,  public navParams: NavParams,  private storage: Storage, private afs: AngularFirestore,  public fireService: FireServiceProvider) {
   }
 
   ngOnInit() {
-    //console.log('init');
     this.getShoppingLists();
   }
 
@@ -64,50 +56,6 @@ export class ListShoppingPage implements OnDestroy {
     })
   }
 
-  //this.shoppingLists = new Set(res.map(r => r.shopName)); //array with unique values
-  //console.log('SL ' + JSON.stringify(this.shoppingLists));
-
-  /*  this.listsSubscription = this.shoppingListsCollection.valueChanges().subscribe((res) => {
-     res.forEach(shop => {
-       console.log(shop);
-       let key = Object.keys(shop.products);
-       let products = key.map(productKey => shop.products[productKey]);
-       this.shoppingLists.push({
-         shopName: shop.shopName,
-         products: products
-       })
-       this.semitransparent[shop.shopName] = [];
-       for (var i in key) {
-         this.semitransparent[shop.shopName][i] = false;
-       }
-     });
-   }) */
-
-
-  /* THIs DOWN HERE WORKS
-  // recupero i nomi dei negozi e li metto in listOfShops
-  // sottoscrivo la collection con il nome del negozio e spingo i prodotti divisi in liste in arrayOfLists
-  // creo un oggetto store: {false, false...} lungo come ogni lista, per controllare la semitraparenza dei prodotti
-  this.shoppingShopsDocument
-    .valueChanges()
-    .subscribe(firestoreShopsProperty => {
-      this.listOfShops = Object.keys(firestoreShopsProperty);
-      //console.log("listOfShops "+this.listOfShops );
-      this.listOfShops.forEach(store => {
-        this.listsSubscription = this.shoppingListsCollection.doc("shops").collection(store).valueChanges().subscribe(productsInList => {
-            //console.log("productsInList "+productsInList)
-            this.arrayOfLists.push(productsInList);
-           // console.log("array "+this.arrayOfLists)
-            this.semitransparent[store] = [];
-            for (var i in productsInList) {
-              this.semitransparent[store][i] = false;
-            }
-          });
-      });
-    });
-  console.log(this.arrayOfLists); */
-
-
   showDeleteModalConfirmation(shop) {
     this.deleteShop = shop;
     // controllo se tutti i prodotti sono stati segnati come presi (trasparent)
@@ -130,7 +78,6 @@ export class ListShoppingPage implements OnDestroy {
   deleteList() {
     this.showSpinner = true;
     this.shoppingListsCollection.doc(this.deleteShop).delete();
-    //this.shoppingLists = [];
     setTimeout(() => {
       this.showSpinner = false;
       this.showDeleteModal = false;
