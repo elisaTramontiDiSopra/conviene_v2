@@ -1,28 +1,14 @@
 <ion-content>
   <div class="container">
-    <img src='assets/imgs/icon_conviene_outline.png' />
-    <!-- <input class="user" [(ngModel)]="email" onClick="this.setSelectionRange(0, this.value.length)">
-    <input class="password" [(ngModel)]="password" onClick="this.setSelectionRange(0, this.value.length)"> -->
+    <!-- LOADER -->
+    <div class='loader' *ngIf='loading === true'>
+      <div class='bg'></div>
+      <loader></loader>
 
+    </div>
+
+    <img src='assets/imgs/icon_conviene_outline.png' />
     <button ion-button color="light" class="" (tap)='loginWithGoogle()'>
       <ion-icon name="logo-google"></ion-icon> Login with Google</button>
-    <!-- <button ion-button color="light" class="" (tap)='webGoogleLogin()'>
-      <ion-icon name="logo-google"></ion-icon> Login with Google</button> -->
-    <!-- <button ion-button color="dark" class="" (tap)='authService.registerWithGoogle()'>
-      <ion-icon name="logo-google"></ion-icon> Register with Google</button> -->
-      {{this.z}}
-      {{this.t}}
-      {{this.u}}
-      QUI SOPRA CREDENTIALS
-    <!-- <div class='button-section'>
-      <button class="button orange" (tap)='login()'> Login </button>
-      <button class="button dark" (tap)='authService.registerWithGoogle()'> Registrati </button>
-    </div> -->
-    <!-- <button class="button orange" (tap)='loginWithGoogle()'>
-      <ion-icon name="logo-google"></ion-icon> Login with Google</button>
-    <div class='button-google'>
-      <button class="button orange" (tap)='loginWithGoogle()'> Login with Google</button>
-      <button class="button dark" (tap)='authService.registerWithGoogle()'> Registrati with Google</button>
-    </div> -->
   </div>
 </ion-content>

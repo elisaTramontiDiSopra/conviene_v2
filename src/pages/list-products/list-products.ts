@@ -29,6 +29,7 @@ export class ListProductsPage {
       /* MODALS*/ showAddModal = false; adding; productForModal; quantity = 1;
   /* SEARCH BAR*/ searchTerm; filterableProductList = []; completeProductList = []
         /* UID */ uid;
+    /* LOADING */ loading = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private afs: AngularFirestore,
     public authService: AuthServiceProvider, private storage: Storage, public fireService: FireServiceProvider ) {
@@ -37,11 +38,13 @@ export class ListProductsPage {
   }
 
   setProductListCollection() {
+    this.loading = true;
     this.storage.get('uid').then(res => {
       this.uid = res;
       this.productCollection = this.afs.collection("prod-" + this.uid, ref => ref.orderBy('name'));
       this.productsObservableList = this.productCollection.valueChanges();
       this.productsObservableList.subscribe(p => {
+        this.loading = false;
         this.filterableProductList = p;
         this.completeProductList = p;
       });

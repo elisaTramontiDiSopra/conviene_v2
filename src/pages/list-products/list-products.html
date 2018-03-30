@@ -30,8 +30,13 @@
     <menu></menu>
   </div>
   <!-- SEARCH BAR -->
-  <div *ngIf='!showAddModal' class='search-bar'>
+  <div *ngIf='!showAddModal || loading !== true' class='search-bar'>
     <ion-searchbar [(ngModel)]="searchTerm" [animated]="true" (ionInput)="searchProduct(searchTerm)"></ion-searchbar>
+  </div>
+
+  <!-- LOADER -->
+  <div *ngIf='loading === true'>
+    <loader></loader>
   </div>
 
   <div *ngIf='!showAddModal' class="container">

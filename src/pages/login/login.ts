@@ -17,9 +17,9 @@ export class LoginPage {
 
   /* INPUT USER  email = ''; password = ''; //servono per non far venire fuori errori di user null*/
   user: Observable<firebase.User>;
-  u; t; z; w;
   credential;
-  uid;
+      /* UID */ uid;
+  /* LOADING */ loading = false;
 
   constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider,
     private afs: AngularFirestore, private storage: Storage,
@@ -37,11 +37,9 @@ export class LoginPage {
   }
 
   loginWithGoogle() {
+    this.loading = true;
     if (this.platform.is('cordova')) {
-      this.mobileGoogleLogin()/* .then(res => {
-        //this.storage.set('uid', res.userId);
-        //this.navCtrl.setRoot('HomePage');
-      }); */
+      this.mobileGoogleLogin()
     } else {
       this.webGoogleLogin();
     }
@@ -55,6 +53,7 @@ export class LoginPage {
       //alert(JSON.stringify(res));
       this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
       .then((suc) => {
+        this.loading = false;
         //this.uid = suc['uid'];
         this.storage.set('uid', suc['uid']);
         this.navCtrl.setRoot('HomePage');
@@ -68,6 +67,7 @@ export class LoginPage {
   webGoogleLogin() {
     this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(res => {
       console.log(res);
+      this.loading = false;
       this.storage.set('uid', res.user.uid);
       this.navCtrl.setRoot('HomePage');
       //this.navCtrl.setRoot('HomePage', { uid: res.user.uid });
