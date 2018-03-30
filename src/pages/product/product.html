@@ -3,16 +3,16 @@
   <div class="container edit">
     <!-- NAME -->
     <div class="product-section name">
-      <p class="buttonText darkpurple vertical-text">Nome</p>
+      <p class="buttonText vertical-text">Nome</p>
       <div class="product-section-content">
         <input [(ngModel)]="product.name" onClick="this.setSelectionRange(0, this.value.length)" placeholder="Nome">
       </div>
       <div class="add-to-cart-product dark">
       </div>
     </div>
-    <!-- NAME -->
-    <div class="product-section name">
-      <p class="buttonText darkpurple vertical-text">Unità</p>
+    <!-- UNITY -->
+    <div class="product-section unity">
+      <p class="buttonText vertical-text">Unità</p>
       <div class="product-section-content">
         <ion-list radio-group [(ngModel)]="product.unity">
           <ion-item class="custom-radio">

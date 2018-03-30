@@ -10,6 +10,16 @@ page-product {
       font-size: 1.5rem;
     }
   }
+  .unity {
+    min-height: 8rem !important;
+    ion-list {
+      margin-bottom: 0;
+    }
+    .vertical-text {
+      background-color: #777;
+      font-size: 1.5rem;
+    }
+  }
   .product-section {
     width: 100vw;
     display: flex;
@@ -52,8 +62,6 @@ page-product {
       .product-shop {
         font-size: 3rem;
         font-weight: bold;
-        //height: 4rem;
-        //border: none !important;
       }
     }
     .add-to-cart-product {
