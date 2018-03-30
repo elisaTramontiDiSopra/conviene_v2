@@ -28,7 +28,7 @@
     <menu></menu>
   </div>
 
-  <ul>
+  <ul *ngIf='showDeleteModal === false'>
     <li *ngFor='let shop of shoppingLists' class='list'>
       <p class='shop-name'>{{shop.shopName}}</p>
       <div class='product-list'>
