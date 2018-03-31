@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "666755449242",
+    "firebase_url": "https://conviene-ee534.firebaseio.com",
+    "project_id": "conviene-ee534",
+    "storage_bucket": "conviene-ee534.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:666755449242:android:0e9dcc975642913e",
+        "android_client_info": {
+          "package_name": "com.elipe.conviene"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "666755449242-oiqmigleqfna0k17280o6n6kbkcf27el.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.elipe.conviene",
+            "certificate_hash": "77ff869d23b752858937419699b251079ebb375b"
+          }
+        },
+        {
+          "client_id": "666755449242-a57bci9vlctglliip5bt6oiq8u33fvec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdcFfNZrKlXa-neNjpbPSKoJnhjLZpD4I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "666755449242-a57bci9vlctglliip5bt6oiq8u33fvec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

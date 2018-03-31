@@ -9,6 +9,12 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 import { Storage } from '@ionic/storage';
 import { GooglePlus } from '@ionic-native/google-plus';
 
+import { FcmProvider } from './../../providers/fcm/fcm';
+
+import { ToastController } from 'ionic-angular';
+import { Subject } from 'rxjs/Subject';
+import { tap } from 'rxjs/operators';
+
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -23,13 +29,26 @@ export class LoginPage {
                 /* UID */ uid;
             /* LOADING */ loading = false;
 
-  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider, private afs: AngularFirestore, private storage: Storage, private gplus: GooglePlus, private platform: Platform) {
+  constructor(public fcm: FcmProvider, public toastCtrl: ToastController, public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider, private afs: AngularFirestore, private storage: Storage, private gplus: GooglePlus, private platform: Platform) {
     this.user = this.afAuth.authState;
     this.storage.get('uid').then(localStorageUser => {
       if (localStorageUser !== '' && localStorageUser !== null) {
         this.navCtrl.setRoot('HomePage', { user: this.user });
       }
     });
+
+    // Get a FCM token
+    //this.fcm.getToken(usermail)
+
+      /* this.fcm.listenToNotifications().pipe(
+            tap(msg => {
+              const toast = this.toastCtrl.create({
+                message: msg.body,
+                duration: 3000
+              });
+              toast.present();
+            })
+          ).subscribe() */
   }
 
   loginWithGoogle() {
@@ -50,7 +69,7 @@ export class LoginPage {
       this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
       .then((suc) => {
         this.loading = false;
-        //this.uid = suc['uid'];
+        this.fcm.getToken(suc['email'])
         this.storage.set('uid', suc['uid']);
         this.navCtrl.setRoot('HomePage');
         //alert(JSON.stringify(suc));
