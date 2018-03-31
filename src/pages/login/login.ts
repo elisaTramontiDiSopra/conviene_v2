@@ -1,10 +1,11 @@
+import { userInterface } from './../../classes/user/user.class';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Platform } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import * as firebase from 'firebase/app';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Storage } from '@ionic/storage';
 import { GooglePlus } from '@ionic-native/google-plus';
 
@@ -18,18 +19,13 @@ export class LoginPage {
   /* INPUT USER  email = ''; password = ''; //servono per non far venire fuori errori di user null*/
   user: Observable<firebase.User>;
   credential;
-      /* UID */ uid;
-  /* LOADING */ loading = false;
+  /* USER FIRESTORE DB */ userCollection: AngularFirestoreCollection<userInterface>; userObservableList: Observable<userInterface[]>
+                /* UID */ uid;
+            /* LOADING */ loading = false;
 
-  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider,
-    private afs: AngularFirestore, private storage: Storage,
-    private gplus: GooglePlus, private platform: Platform) {
-    //console.log('login constructor');
-    //this.user = this.afAuth.auth.currentUser;;
+  constructor(public navCtrl: NavController, public afAuth: AngularFireAuth, public authService: AuthServiceProvider, private afs: AngularFirestore, private storage: Storage, private gplus: GooglePlus, private platform: Platform) {
     this.user = this.afAuth.authState;
-    //alert(this.user);
     this.storage.get('uid').then(localStorageUser => {
-      //console.log(localStorageUser);
       if (localStorageUser !== '' && localStorageUser !== null) {
         this.navCtrl.setRoot('HomePage', { user: this.user });
       }
@@ -76,4 +72,33 @@ export class LoginPage {
       console.log(errorMessage);
     });
   }
+
+  registerWithGoogle() {
+    this.loading = true;
+    if (this.platform.is('cordova')) {
+      this.mobileRegisterGoogleLogin()
+    } else {
+      this.webRegisterGoogleLogin();
+    }
+  }
+
+  mobileRegisterGoogleLogin() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((suc) => console.log(suc))
+  }
+
+  webRegisterGoogleLogin() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((suc) => {
+      console.log(suc);
+      this.userCollection = this.afs.collection('users');
+      this.storage.set('uid', suc.user.uid);
+      var user = {
+        uid:  suc.user.uid,
+        email:  suc.user.email,
+        photoURL: suc.user.photoURL,
+        displayName: suc.user.displayName,
+      }
+      this.userCollection.doc(suc.user.uid).set(user).then(()=> this.navCtrl.setRoot('HomePage'));
+    })
+  }
+
 }
